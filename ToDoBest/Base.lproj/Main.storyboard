@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <accessibilityOverrides/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ToDoBest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="3ra-gI-TXz">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgQ-W6-cw4">
+                                        <rect key="frame" x="332.66666666666669" y="158" width="42.666666666666686" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="+">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="MainPagePlus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UIS-oQ-2Ht"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odL-cY-jAT">
+                                        <rect key="frame" x="328" y="117.33333333333333" width="52.333333333333314" height="35.333333333333329"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="gearshape" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="font">
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            </preferredSymbolConfiguration>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="MainPageSettings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nz3-QJ-nD5"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLr-fm-Mne">
+                                        <rect key="frame" x="16" y="161" width="111" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Page12312312" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSH-jz-Aqs">
+                                        <rect key="frame" x="16" y="113" width="309" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4AM-Hv-51P">
+                                        <rect key="frame" x="16" y="211" width="358" height="633"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="6mp-KA-Vkx"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="N3z-Aa-YMq"/>
+                                    </scrollView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwW-Hm-2QU">
+                                        <rect key="frame" x="5" y="61" width="93.333333333333329" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title="Back">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="MainPageBackButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gM2-Xw-1tJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaT-nn-wK6">
+                                        <rect key="frame" x="330" y="66" width="48" height="34"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                                        <connections>
+                                            <action selector="MainPageTrash:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NEu-TX-cms"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgf-P4-tgB">
+                                        <rect key="frame" x="291" y="74" width="31" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="MainPageInfoModeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ow4-Ze-KyP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="D4i-9B-34E"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="hgQ-W6-cw4" firstAttribute="centerX" secondItem="3ra-gI-TXz" secondAttribute="centerX" constant="159" id="3oX-WP-vnh"/>
+                                    <constraint firstItem="OaT-nn-wK6" firstAttribute="centerX" secondItem="3ra-gI-TXz" secondAttribute="centerX" constant="159" id="4cG-gf-3Wv"/>
+                                    <constraint firstItem="GLr-fm-Mne" firstAttribute="centerY" secondItem="3ra-gI-TXz" secondAttribute="centerY" constant="-240" id="5YX-vF-3Fn"/>
+                                    <constraint firstItem="DSH-jz-Aqs" firstAttribute="trailing" secondItem="3ra-gI-TXz" secondAttribute="centerX" constant="130" id="92g-we-9Pm"/>
+                                    <constraint firstItem="DSH-jz-Aqs" firstAttribute="centerY" secondItem="3ra-gI-TXz" secondAttribute="centerY" constant="-288" id="AYC-ou-iZd"/>
+                                    <constraint firstItem="GLr-fm-Mne" firstAttribute="leading" secondItem="3ra-gI-TXz" secondAttribute="centerX" constant="-179" id="Emr-8f-V5w"/>
+                                    <constraint firstItem="odL-cY-jAT" firstAttribute="centerX" secondItem="3ra-gI-TXz" secondAttribute="centerX" constant="159" id="G7d-vk-TbA"/>
+                                    <constraint firstItem="odL-cY-jAT" firstAttribute="centerY" secondItem="3ra-gI-TXz" secondAttribute="centerY" constant="-287" id="NST-Pu-6tT"/>
+                                    <constraint firstItem="uwW-Hm-2QU" firstAttribute="leading" secondItem="3ra-gI-TXz" secondAttribute="centerX" constant="-190" id="YpY-rq-b1W"/>
+                                    <constraint firstItem="OaT-nn-wK6" firstAttribute="centerY" secondItem="3ra-gI-TXz" secondAttribute="centerY" constant="-339" id="ibq-TH-Yk3"/>
+                                    <constraint firstItem="uwW-Hm-2QU" firstAttribute="centerY" secondItem="3ra-gI-TXz" secondAttribute="centerY" constant="-339" id="ihP-Ha-HX5"/>
+                                    <constraint firstItem="DSH-jz-Aqs" firstAttribute="leading" secondItem="3ra-gI-TXz" secondAttribute="centerX" constant="-179" id="qFI-Xm-emM"/>
+                                    <constraint firstItem="hgQ-W6-cw4" firstAttribute="centerY" secondItem="3ra-gI-TXz" secondAttribute="centerY" constant="-239" id="qhp-WP-xPW"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="Uvd-d4-Zml">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On/Off directories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyg-DW-1EL">
+                                        <rect key="frame" x="16" y="184" width="156.66666666666666" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3z-pr-BG6">
+                                        <rect key="frame" x="16" y="219.66666666666666" width="80" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gv0-VO-sRR">
+                                        <rect key="frame" x="326" y="219" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="SettingsOnOffFolders:" destination="BYZ-38-t0r" eventType="valueChanged" id="MaN-zG-a7s"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd4-6Y-l51">
+                                        <rect key="frame" x="150.66666666666666" y="74" width="89" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" red="0.0" green="0.45882352941176469" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rv3-rz-tMI">
+                                        <rect key="frame" x="0.0" y="766" width="93.333333333333329" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title="Back">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="SettingsBackButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="287-gj-wsK"/>
+                                        </connections>
+                                    </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wHc-FR-5Zg">
+                                        <rect key="frame" x="326" y="286" width="51" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="SettingsOnOffLists:" destination="BYZ-38-t0r" eventType="valueChanged" id="m6o-pL-1Gz"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtZ-wL-pzj">
+                                        <rect key="frame" x="16" y="286" width="111" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose standart directory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XS3-On-boq">
+                                        <rect key="frame" x="16" y="254" width="263" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Pf-14-vx0">
+                                        <rect key="frame" x="224" y="251" width="151" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <menu key="menu" id="EAR-p3-bK0">
+                                            <children>
+                                                <command title="Item 1" id="Iew-2D-E0o"/>
+                                                <command title="Item 2" id="wCn-Ob-Fdb"/>
+                                            </children>
+                                        </menu>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose standart list" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JO-Jy-0kR">
+                                        <rect key="frame" x="16" y="324" width="243" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7P-yn-555">
+                                        <rect key="frame" x="175" y="321" width="200" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <menu key="menu" id="YNk-EF-3WI">
+                                            <children>
+                                                <command title="Item 1" id="KCQ-mJ-6TZ"/>
+                                                <command title="Item 2" id="8tn-dw-9St"/>
+                                            </children>
+                                        </menu>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LeV-eU-TPK">
+                                        <rect key="frame" x="15.999999999999993" y="376" width="111.33333333333331" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="927-6b-OVE">
+                                        <rect key="frame" x="16" y="414" width="137" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uj7-O5-oWZ">
+                                        <rect key="frame" x="325" y="413" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="SettingsOnOffNotifications:" destination="BYZ-38-t0r" eventType="valueChanged" id="7lR-g9-ewX"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose the time until the end of task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zv-KI-NEH">
+                                        <rect key="frame" x="16" y="451" width="287" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="BHf-42-1I7">
+                                        <rect key="frame" x="308" y="451" width="67" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="SettingsNotificationsDatePicker:" destination="BYZ-38-t0r" eventType="valueChanged" id="xkE-d3-Jea"/>
+                                        </connections>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvg-mH-NbC">
+                                        <rect key="frame" x="16" y="528" width="108" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J4G-na-0Zx">
+                                        <rect key="frame" x="328" y="526.66666666666663" width="46" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <menu key="menu" id="K97-g9-fII">
+                                            <children>
+                                                <command title="Item 1" id="q6c-wk-qlH"/>
+                                                <command title="Item 2" id="1Eb-If-eLE"/>
+                                            </children>
+                                        </menu>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask to complete task" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTg-2A-nBR">
+                                        <rect key="frame" x="16" y="607" width="224" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XWB-go-1w1">
+                                        <rect key="frame" x="325" y="606" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="SettingsAskToCompleteSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="VYf-G5-qWj"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="L2q-K7-LTm"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Gv0-VO-sRR" firstAttribute="centerX" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="155.5" id="42W-WN-0dj"/>
+                                    <constraint firstItem="uyg-DW-1EL" firstAttribute="leading" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="-179" id="9g1-4i-Aow"/>
+                                    <constraint firstItem="XWB-go-1w1" firstAttribute="centerX" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="154.5" id="A3T-bp-zfP"/>
+                                    <constraint firstItem="XWB-go-1w1" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="199.5" id="B5R-6J-UnL"/>
+                                    <constraint firstItem="uj7-O5-oWZ" firstAttribute="centerX" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="154.5" id="Fh3-8g-FpH"/>
+                                    <constraint firstItem="e3z-pr-BG6" firstAttribute="leading" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="-179" id="M3V-6h-pKE"/>
+                                    <constraint firstItem="LeV-eU-TPK" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="-34" id="MYr-43-Pb6"/>
+                                    <constraint firstItem="uj7-O5-oWZ" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="6.5" id="Myd-1H-78t"/>
+                                    <constraint firstItem="Rv3-rz-tMI" firstAttribute="leading" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="-195" id="QPT-Au-HXS"/>
+                                    <constraint firstItem="Gv0-VO-sRR" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="-187.5" id="RFH-La-q8s"/>
+                                    <constraint firstItem="fd4-6Y-l51" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="-333" id="TwN-bs-Anh"/>
+                                    <constraint firstItem="bTg-2A-nBR" firstAttribute="leading" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="-179" id="Xkf-UR-QIW"/>
+                                    <constraint firstItem="J4G-na-0Zx" firstAttribute="trailing" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="179" id="aUr-Ma-GIm"/>
+                                    <constraint firstItem="927-6b-OVE" firstAttribute="leading" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="-179" id="eUu-RE-z3F"/>
+                                    <constraint firstItem="e3z-pr-BG6" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="-187.5" id="epn-LZ-peJ"/>
+                                    <constraint firstItem="Rv3-rz-tMI" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="366" id="flg-1f-mO2"/>
+                                    <constraint firstItem="LeV-eU-TPK" firstAttribute="leading" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="-179" id="g7G-JP-5Ug"/>
+                                    <constraint firstItem="kvg-mH-NbC" firstAttribute="leading" secondItem="Uvd-d4-Zml" secondAttribute="centerX" constant="-179" id="jIn-py-6Fy"/>
+                                    <constraint firstItem="J4G-na-0Zx" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="121" id="nC2-cC-YcD"/>
+                                    <constraint firstItem="kvg-mH-NbC" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="121" id="ppi-1Q-oLM"/>
+                                    <constraint firstItem="927-6b-OVE" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="7" id="rbw-tC-MTB"/>
+                                    <constraint firstItem="bTg-2A-nBR" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="200" id="ve1-AD-ni7"/>
+                                    <constraint firstItem="fd4-6Y-l51" firstAttribute="centerX" secondItem="Uvd-d4-Zml" secondAttribute="centerX" id="wXb-wk-cAO"/>
+                                    <constraint firstItem="uyg-DW-1EL" firstAttribute="centerY" secondItem="Uvd-d4-Zml" secondAttribute="centerY" constant="-226" id="ycX-Fp-crr"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="zrP-Oh-ULr">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ett-QV-J4o">
+                                        <rect key="frame" x="38" y="146" width="49" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cb-9y-sNs">
+                                        <rect key="frame" x="38" y="237" width="124" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z0X-gg-Khi">
+                                        <rect key="frame" x="38" y="275" width="314" height="194"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6D9-0Y-ROL">
+                                        <rect key="frame" x="5" y="758" width="93.333333333333329" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title="Back">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="TaskInfoBackButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I5J-X4-lbL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFT-Gi-sAn">
+                                        <rect key="frame" x="305" y="758" width="77" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Save">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="TaskInfoSaveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DjQ-zR-zof"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J40-U1-0P5">
+                                        <rect key="frame" x="38" y="181" width="314" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AQ-Gb-O0v">
+                                        <rect key="frame" x="175" y="83" width="40" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIu-aK-ag4">
+                                        <rect key="frame" x="38" y="486" width="51" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" id="eq8-DT-nUc">
+                                        <rect key="frame" x="34" y="524" width="195" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="TaskInfoDatePickerAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="2SQ-N4-A5t"/>
+                                        </connections>
+                                    </datePicker>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="Wzl-XH-wjK"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="6D9-0Y-ROL" firstAttribute="centerY" secondItem="zrP-Oh-ULr" secondAttribute="centerY" constant="358" id="5Jg-IO-Pn9"/>
+                                    <constraint firstItem="6D9-0Y-ROL" firstAttribute="leading" secondItem="zrP-Oh-ULr" secondAttribute="centerX" constant="-190" id="EY0-zc-pb3"/>
+                                    <constraint firstItem="KFT-Gi-sAn" firstAttribute="centerY" secondItem="zrP-Oh-ULr" secondAttribute="centerY" constant="358" id="H05-Ia-QSr"/>
+                                    <constraint firstItem="9Cb-9y-sNs" firstAttribute="leading" secondItem="zrP-Oh-ULr" secondAttribute="centerX" constant="-157" id="JGb-Mf-3B9"/>
+                                    <constraint firstItem="ett-QV-J4o" firstAttribute="centerY" secondItem="zrP-Oh-ULr" secondAttribute="centerY" constant="-261" id="PgP-oE-m72"/>
+                                    <constraint firstItem="mIu-aK-ag4" firstAttribute="leading" secondItem="zrP-Oh-ULr" secondAttribute="centerX" constant="-157" id="QjI-FI-tgb"/>
+                                    <constraint firstItem="6AQ-Gb-O0v" firstAttribute="centerX" secondItem="zrP-Oh-ULr" secondAttribute="centerX" id="TCy-o2-Q0x"/>
+                                    <constraint firstItem="6AQ-Gb-O0v" firstAttribute="centerY" secondItem="zrP-Oh-ULr" secondAttribute="centerY" constant="-324" id="brh-pe-WWh"/>
+                                    <constraint firstItem="KFT-Gi-sAn" firstAttribute="trailing" secondItem="zrP-Oh-ULr" secondAttribute="centerX" constant="187" id="kMP-Ln-6u7"/>
+                                    <constraint firstItem="ett-QV-J4o" firstAttribute="leading" secondItem="zrP-Oh-ULr" secondAttribute="centerX" constant="-157" id="r0c-o6-b6A"/>
+                                    <constraint firstItem="9Cb-9y-sNs" firstAttribute="centerY" secondItem="zrP-Oh-ULr" secondAttribute="centerY" constant="-170" id="z9s-U7-IOg"/>
+                                    <constraint firstItem="mIu-aK-ag4" firstAttribute="centerY" secondItem="zrP-Oh-ULr" secondAttribute="centerY" constant="79" id="zP5-vZ-Vxe"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="Djt-Dh-se2">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="safeArea" id="esd-pQ-BL0"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="TcM-Xo-wf2">
+                                <rect key="frame" x="23" y="334" width="343" height="176"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oy1-YL-XH4">
+                                        <rect key="frame" x="23" y="82" width="297" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7D-Il-Q1P">
+                                        <rect key="frame" x="8" y="124" width="40" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="&lt;">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="NewPSDBackButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lBZ-FI-30e"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yR-Qm-sW3">
+                                        <rect key="frame" x="8" y="32" width="327" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2IH-Bf-kE1">
+                                        <rect key="frame" x="270" y="129" width="50" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="pencil.tip.crop.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="NewPSDSetColorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mfz-3I-uRX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTf-AU-zwd">
+                                        <rect key="frame" x="64" y="124" width="214" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Continue">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="NewPSDContinueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WTn-4W-ulo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="hn8-Vp-2VT"/>
+                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="MainPage" destination="3ra-gI-TXz" id="MvV-ge-hJy"/>
+                        <outlet property="MainPageBackButton" destination="uwW-Hm-2QU" id="Una-Bu-fLJ"/>
+                        <outlet property="MainPageInfoModeButton" destination="pgf-P4-tgB" id="Wft-9A-t7H"/>
+                        <outlet property="MainPageMainLabel" destination="GLr-fm-Mne" id="DSp-y5-5PP"/>
+                        <outlet property="MainPagePlusButton" destination="hgQ-W6-cw4" id="4rC-x8-z5Y"/>
+                        <outlet property="MainPageScroll" destination="4AM-Hv-51P" id="ag9-2q-6XV"/>
+                        <outlet property="MainPageTrashButton" destination="OaT-nn-wK6" id="7uL-UF-Bfu"/>
+                        <outlet property="MainPageUpperLabel" destination="DSH-jz-Aqs" id="D6K-zX-Fho"/>
+                        <outlet property="MainView" destination="8bC-Xf-vdC" id="N1h-3p-Z72"/>
+                        <outlet property="NewPSD" destination="TcM-Xo-wf2" id="yc0-6p-bQx"/>
+                        <outlet property="NewPSDBackButton" destination="W7D-Il-Q1P" id="gKE-Ie-sV1"/>
+                        <outlet property="NewPSDColorButton" destination="2IH-Bf-kE1" id="Oht-Nt-rm0"/>
+                        <outlet property="NewPSDContinueButton" destination="kTf-AU-zwd" id="NZf-9O-DBl"/>
+                        <outlet property="NewPSDLabel" destination="8yR-Qm-sW3" id="nff-qn-7QE"/>
+                        <outlet property="NewPSDTextField" destination="Oy1-YL-XH4" id="w6x-Zh-nDP"/>
+                        <outlet property="Settings" destination="Uvd-d4-Zml" id="owS-I6-QbH"/>
+                        <outlet property="SettingsAskToCompleteLabel" destination="bTg-2A-nBR" id="Gwk-Gd-J1J"/>
+                        <outlet property="SettingsAskToCompleteSwitch" destination="XWB-go-1w1" id="Ilh-91-6eL"/>
+                        <outlet property="SettingsBackButton" destination="Rv3-rz-tMI" id="B5u-3T-89V"/>
+                        <outlet property="SettingsChooseListLabel" destination="7JO-Jy-0kR" id="4YO-4L-DrY"/>
+                        <outlet property="SettingsChooseListPopUp" destination="x7P-yn-555" id="ad5-fD-riK"/>
+                        <outlet property="SettingsChooseTimeDatePicker" destination="BHf-42-1I7" id="KdS-of-tc0"/>
+                        <outlet property="SettingsDirectoryLabel" destination="XS3-On-boq" id="UbC-mw-3q4"/>
+                        <outlet property="SettingsDirectoryPopUp" destination="7Pf-14-vx0" id="wAG-wj-xKd"/>
+                        <outlet property="SettingsFolderLabel" destination="e3z-pr-BG6" id="oVt-n1-ZnQ"/>
+                        <outlet property="SettingsFolderSwitch" destination="Gv0-VO-sRR" id="djH-TZ-fhf"/>
+                        <outlet property="SettingsLanguageLabel" destination="kvg-mH-NbC" id="Dxn-22-ovv"/>
+                        <outlet property="SettingsLanguagePopUp" destination="J4G-na-0Zx" id="mQ2-7q-lyX"/>
+                        <outlet property="SettingsListsLabel" destination="MtZ-wL-pzj" id="KBd-78-AP7"/>
+                        <outlet property="SettingsListsSwitch" destination="wHc-FR-5Zg" id="SXs-Ga-oBx"/>
+                        <outlet property="SettingsMainLabel" destination="fd4-6Y-l51" id="ej9-90-SKN"/>
+                        <outlet property="SettingsNotificationCategoryLabel" destination="LeV-eU-TPK" id="9Ge-YP-6sZ"/>
+                        <outlet property="SettingsNotificationLabel" destination="927-6b-OVE" id="fFu-C2-QZS"/>
+                        <outlet property="SettingsNotificationsAdditionLabel" destination="4zv-KI-NEH" id="6uG-Kw-vkh"/>
+                        <outlet property="SettingsNotificationsSwitch" destination="uj7-O5-oWZ" id="Pj6-Cg-dQ0"/>
+                        <outlet property="SettingsOnOffDirCategoryLabel" destination="uyg-DW-1EL" id="ny2-SY-9MK"/>
+                        <outlet property="TaskInfo" destination="zrP-Oh-ULr" id="dyt-85-pez"/>
+                        <outlet property="TaskInfoBackButton" destination="6D9-0Y-ROL" id="jnt-ir-L8r"/>
+                        <outlet property="TaskInfoDateLabel" destination="mIu-aK-ag4" id="HML-7a-GoJ"/>
+                        <outlet property="TaskInfoDatePicker" destination="eq8-DT-nUc" id="DqE-8O-MSk"/>
+                        <outlet property="TaskInfoDecriptionLabel" destination="9Cb-9y-sNs" id="dv5-ZD-V6E"/>
+                        <outlet property="TaskInfoDescriptionText" destination="z0X-gg-Khi" id="QtJ-xn-VJP"/>
+                        <outlet property="TaskInfoMainLabel" destination="6AQ-Gb-O0v" id="ZBk-0x-chZ"/>
+                        <outlet property="TaskInfoSaveButton" destination="KFT-Gi-sAn" id="EYf-9n-ipb"/>
+                        <outlet property="TaskInfoTaskLabel" destination="ett-QV-J4o" id="xIU-b8-tIM"/>
+                        <outlet property="TaskInfoTitleText" destination="J40-U1-0P5" id="5ao-w3-0nB"/>
+                        <outlet property="Tint" destination="Djt-Dh-se2" id="Vbu-ka-2aG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132.30769230769229" y="2.1327014218009479"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
+        <image name="info.circle" catalog="system" width="128" height="123"/>
+        <image name="pencil.tip.crop.circle" catalog="system" width="128" height="123"/>
+        <image name="trash" catalog="system" width="117" height="128"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
