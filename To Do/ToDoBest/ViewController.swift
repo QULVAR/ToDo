@@ -6,10 +6,16 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
     //Views
     @IBOutlet var MainView: UIView!
     @IBOutlet weak var MainPage: UIView!
+    @IBOutlet var ServerPage: UIView!
     @IBOutlet weak var NewPSD: UIView!
     @IBOutlet weak var Tint: UIView!
     @IBOutlet var Settings: UIView!
     @IBOutlet weak var TaskInfo: UIView!
+    
+    
+    //Server Page elements
+    @IBOutlet weak var ServerPageTextField: UITextField!
+    @IBOutlet weak var ServerPageContinueButton: UIButton!
     
     
     //Main Page elements
@@ -110,12 +116,23 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
     var tasksPropertiesServer: [[[[String]]]] = []
     var timestampServer: Int = 0
     
-    let serverSaveName: String = "Qulvar"
+    var serverSaveName: String = ""
     
     let translation = LanguageExtension()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        serverSaveName = readFile(file: "Server.txt")
+        severPageViewDidLoad()
+        if (serverSaveName != "") {
+            viewControllerViewDidLoad()
+        }
+        else {
+            viewShow(object: ServerPage, duration: 0.0)
+        }
+    }
+    
+    func viewControllerViewDidLoad () {
         dataLoader()
         lang = settingsClient[6]
         languageDirctionary = translation.translate(lang: lang)
@@ -134,6 +151,10 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
     
     @IBAction func MainPagePlus(_ sender: UIButton) {
         mainPagePlusButtonAction(sender: sender)
+    }
+    
+    @IBAction func ServerPageContinueButton(_ sender: UIButton) {
+        serverPageContinueButtonAction(sender: sender)
     }
     
     @IBAction func NewPSDBackButton(_ sender: UIButton) {

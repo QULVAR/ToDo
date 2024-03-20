@@ -2,14 +2,16 @@ import UIKit
 
 extension ViewController {
     
-    func viewShow (object: UIView) {
-        UIView.animate(withDuration: 0.6) {
+    func viewShow (object: UIView, duration: Double = 0.6) {
+        let duration_: TimeInterval = TimeInterval(duration)
+        UIView.animate(withDuration: duration_) {
             object.frame.origin.y = 0
         }
     }
     
-    func viewHide(object: UIView) {
-        UIView.animate(withDuration: 0.6) {
+    func viewHide(object: UIView, duration: Double = 0.6) {
+        let duration_: TimeInterval = TimeInterval(duration)
+        UIView.animate(withDuration: duration_) {
             object.frame.origin.y = self.MainPage.frame.height
         }
     }

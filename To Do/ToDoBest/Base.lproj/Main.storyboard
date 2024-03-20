@@ -438,6 +438,43 @@
                                 <viewLayoutGuide key="safeArea" id="hn8-Vp-2VT"/>
                                 <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                             </view>
+                            <view contentMode="scaleToFill" id="Uh4-t5-93d">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUt-7m-cDu">
+                                        <rect key="frame" x="174" y="340" width="0.0" height="0.0"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8i2-Pp-XU3">
+                                        <rect key="frame" x="134" y="400" width="122" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Continue">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="ServerPageContinueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UeT-cl-8xJ"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your login..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iOm-Ad-fDE">
+                                        <rect key="frame" x="49" y="345" width="293" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="vKO-zE-1pR"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="iOm-Ad-fDE" firstAttribute="centerY" secondItem="Uh4-t5-93d" secondAttribute="centerY" constant="-57" id="CYH-gd-G2R"/>
+                                    <constraint firstItem="8i2-Pp-XU3" firstAttribute="centerY" secondItem="Uh4-t5-93d" secondAttribute="centerY" id="FID-fB-KAo"/>
+                                    <constraint firstItem="8i2-Pp-XU3" firstAttribute="centerX" secondItem="Uh4-t5-93d" secondAttribute="centerX" id="VVW-xM-tmX"/>
+                                    <constraint firstItem="iOm-Ad-fDE" firstAttribute="trailing" secondItem="Uh4-t5-93d" secondAttribute="centerX" constant="147" id="abR-o0-sPV"/>
+                                    <constraint firstItem="iOm-Ad-fDE" firstAttribute="leading" secondItem="Uh4-t5-93d" secondAttribute="centerX" constant="-146" id="ato-n3-4R9"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -458,6 +495,9 @@
                         <outlet property="NewPSDContinueButton" destination="kTf-AU-zwd" id="NZf-9O-DBl"/>
                         <outlet property="NewPSDLabel" destination="8yR-Qm-sW3" id="nff-qn-7QE"/>
                         <outlet property="NewPSDTextField" destination="Oy1-YL-XH4" id="w6x-Zh-nDP"/>
+                        <outlet property="ServerPage" destination="Uh4-t5-93d" id="31c-8U-E22"/>
+                        <outlet property="ServerPageContinueButton" destination="8i2-Pp-XU3" id="BZn-ax-gdw"/>
+                        <outlet property="ServerPageTextField" destination="iOm-Ad-fDE" id="4H4-kl-X7m"/>
                         <outlet property="Settings" destination="Uvd-d4-Zml" id="owS-I6-QbH"/>
                         <outlet property="SettingsAskToCompleteLabel" destination="bTg-2A-nBR" id="Gwk-Gd-J1J"/>
                         <outlet property="SettingsAskToCompleteSwitch" destination="XWB-go-1w1" id="Ilh-91-6eL"/>

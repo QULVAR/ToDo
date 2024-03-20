@@ -135,14 +135,30 @@ extension ViewController {
     
     func saveData () {
         let data = dataWriter()
+        writeFile(data: data, file: "Data.txt")
+        serverPost(data: data) { responseString in if responseString != nil {} else {}}
+    }
+    
+    func writeFile (data: String, file: String) {
         if let directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.QULVAR.ToDo") {
-            let fileURL = directory.appendingPathComponent("Text.txt")
+            let fileURL = directory.appendingPathComponent(file)
             do {
                 try data.write(to: fileURL, atomically: true, encoding: .utf8)
             }
             catch {}
         }
-        serverPost(data: data) { responseString in if responseString != nil {} else {}}
+    }
+    
+    func readFile (file: String) -> String {
+        var dataClient: String = ""
+        if let directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.QULVAR.ToDo") {
+            let fileURL = directory.appendingPathComponent(file)
+            do {
+                dataClient = try String(contentsOf: fileURL, encoding: .utf8)
+            }
+            catch {}
+        }
+        return dataClient
     }
     
     func dataLoader() {
@@ -155,14 +171,7 @@ extension ViewController {
             } else {flag = true}
         }
         wait {return flag}
-        var dataClient = ""
-        if let directory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.QULVAR.ToDo") {
-            let fileURL = directory.appendingPathComponent("Text.txt")
-            do {
-                dataClient = try String(contentsOf: fileURL, encoding: .utf8)
-            }
-            catch {}
-        }
+        var dataClient = readFile(file: "Data.txt")
         if (dataServer != "") {
             dataReader(data: dataServer, mode: "Server")
         }
