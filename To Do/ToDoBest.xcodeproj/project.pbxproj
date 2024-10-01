@@ -13,8 +13,9 @@
 		164FE09C2BA09173007A6AB8 /* Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164FE09B2BA09173007A6AB8 /* Tint.swift */; };
 		164FE09E2BA091EA007A6AB8 /* TaskInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164FE09D2BA091EA007A6AB8 /* TaskInfo.swift */; };
 		164FE0A02BA0A9B9007A6AB8 /* ViewControllerFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164FE09F2BA0A9B9007A6AB8 /* ViewControllerFuncs.swift */; };
-		164FE0A22BA0AAE3007A6AB8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164FE0A12BA0AAE3007A6AB8 /* Data.swift */; };
-		164FE0A42BA0AC6E007A6AB8 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164FE0A32BA0AC6E007A6AB8 /* Server.swift */; };
+		166A5C362C761A3400E77731 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166A5C352C761A3400E77731 /* DataBase.swift */; };
+		1683CA292C824FE300A723DD /* AuthPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1683CA282C824FE300A723DD /* AuthPage.swift */; };
+		1683CA2B2C82554100A723DD /* RegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1683CA2A2C82554100A723DD /* RegisterPage.swift */; };
 		1695FDEC2B2C1DD300B14550 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1695FDEB2B2C1DD300B14550 /* AppDelegate.swift */; };
 		1695FDEE2B2C1DD300B14550 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1695FDED2B2C1DD300B14550 /* SceneDelegate.swift */; };
 		1695FDF02B2C1DD300B14550 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1695FDEF2B2C1DD300B14550 /* ViewController.swift */; };
@@ -27,6 +28,9 @@
 		16BF51332BA0012A0066B039 /* UIColorHexExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BF51322BA0012A0066B039 /* UIColorHexExtension.swift */; };
 		16C5E59B2B9C6DB4003D4353 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C5E59A2B9C6DB4003D4353 /* NotificationController.swift */; };
 		16D44AA32BA084E7006027C2 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D44AA22BA084E7006027C2 /* MainPage.swift */; };
+		16F081DC2C7FAFD600EB4260 /* ServerDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F081DB2C7FAFD600EB4260 /* ServerDataBase.swift */; };
+		16F081DE2C7FEF4000EB4260 /* dataBaseFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F081DD2C7FEF4000EB4260 /* dataBaseFuncs.swift */; };
+		16F653372C7FA7E30049A669 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 16F653362C7FA7E30049A669 /* SQLite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +57,9 @@
 		164FE09B2BA09173007A6AB8 /* Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tint.swift; sourceTree = "<group>"; };
 		164FE09D2BA091EA007A6AB8 /* TaskInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInfo.swift; sourceTree = "<group>"; };
 		164FE09F2BA0A9B9007A6AB8 /* ViewControllerFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFuncs.swift; sourceTree = "<group>"; };
-		164FE0A12BA0AAE3007A6AB8 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		164FE0A32BA0AC6E007A6AB8 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		166A5C352C761A3400E77731 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		1683CA282C824FE300A723DD /* AuthPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPage.swift; sourceTree = "<group>"; };
+		1683CA2A2C82554100A723DD /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
 		1695FDE82B2C1DD300B14550 /* ToDoBest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoBest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1695FDEB2B2C1DD300B14550 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1695FDED2B2C1DD300B14550 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +77,8 @@
 		16BF51322BA0012A0066B039 /* UIColorHexExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHexExtension.swift; sourceTree = "<group>"; };
 		16C5E59A2B9C6DB4003D4353 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		16D44AA22BA084E7006027C2 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
+		16F081DB2C7FAFD600EB4260 /* ServerDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDataBase.swift; sourceTree = "<group>"; };
+		16F081DD2C7FEF4000EB4260 /* dataBaseFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataBaseFuncs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16F653372C7FA7E30049A669 /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,16 +136,19 @@
 				1695FDEB2B2C1DD300B14550 /* AppDelegate.swift */,
 				1695FDED2B2C1DD300B14550 /* SceneDelegate.swift */,
 				1695FDEF2B2C1DD300B14550 /* ViewController.swift */,
+				1683CA2A2C82554100A723DD /* RegisterPage.swift */,
+				1683CA282C824FE300A723DD /* AuthPage.swift */,
 				16D44AA22BA084E7006027C2 /* MainPage.swift */,
 				164FE09B2BA09173007A6AB8 /* Tint.swift */,
 				164FE0972BA08CD3007A6AB8 /* NewPSD.swift */,
 				164FE0992BA08EC6007A6AB8 /* Settings.swift */,
 				164FE09D2BA091EA007A6AB8 /* TaskInfo.swift */,
 				164FE09F2BA0A9B9007A6AB8 /* ViewControllerFuncs.swift */,
-				164FE0A12BA0AAE3007A6AB8 /* Data.swift */,
-				164FE0A32BA0AC6E007A6AB8 /* Server.swift */,
+				16F081DB2C7FAFD600EB4260 /* ServerDataBase.swift */,
+				16F081DD2C7FEF4000EB4260 /* dataBaseFuncs.swift */,
 				16C5E59A2B9C6DB4003D4353 /* NotificationController.swift */,
 				160FC9412BA31BD200949798 /* LanguageExtension.swift */,
+				166A5C352C761A3400E77731 /* DataBase.swift */,
 				16BF51322BA0012A0066B039 /* UIColorHexExtension.swift */,
 				1695FDF12B2C1DD300B14550 /* Main.storyboard */,
 				1695FDF62B2C1DD500B14550 /* LaunchScreen.storyboard */,
@@ -178,6 +189,9 @@
 			dependencies = (
 			);
 			name = ToDoBest;
+			packageProductDependencies = (
+				16F653362C7FA7E30049A669 /* SQLite */,
+			);
 			productName = ToDoBest;
 			productReference = 1695FDE82B2C1DD300B14550 /* ToDoBest.app */;
 			productType = "com.apple.product-type.application";
@@ -250,6 +264,9 @@
 				Base,
 			);
 			mainGroup = 1695FDDF2B2C1DD300B14550;
+			packageReferences = (
+				166A5C322C7619B200E77731 /* XCRemoteSwiftPackageReference "SQLite" */,
+			);
 			productRefGroup = 1695FDE92B2C1DD300B14550 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -293,20 +310,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1683CA292C824FE300A723DD /* AuthPage.swift in Sources */,
 				164FE09E2BA091EA007A6AB8 /* TaskInfo.swift in Sources */,
 				1695FDF02B2C1DD300B14550 /* ViewController.swift in Sources */,
 				1695FDEC2B2C1DD300B14550 /* AppDelegate.swift in Sources */,
 				164FE0A02BA0A9B9007A6AB8 /* ViewControllerFuncs.swift in Sources */,
+				1683CA2B2C82554100A723DD /* RegisterPage.swift in Sources */,
 				164FE09A2BA08EC6007A6AB8 /* Settings.swift in Sources */,
 				160FC9422BA31BD200949798 /* LanguageExtension.swift in Sources */,
 				16C5E59B2B9C6DB4003D4353 /* NotificationController.swift in Sources */,
+				16F081DE2C7FEF4000EB4260 /* dataBaseFuncs.swift in Sources */,
 				16BF51332BA0012A0066B039 /* UIColorHexExtension.swift in Sources */,
 				1695FDEE2B2C1DD300B14550 /* SceneDelegate.swift in Sources */,
 				164FE09C2BA09173007A6AB8 /* Tint.swift in Sources */,
+				166A5C362C761A3400E77731 /* DataBase.swift in Sources */,
+				16F081DC2C7FAFD600EB4260 /* ServerDataBase.swift in Sources */,
 				164FE0982BA08CD3007A6AB8 /* NewPSD.swift in Sources */,
 				16D44AA32BA084E7006027C2 /* MainPage.swift in Sources */,
-				164FE0A42BA0AC6E007A6AB8 /* Server.swift in Sources */,
-				164FE0A22BA0AAE3007A6AB8 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +681,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		166A5C322C7619B200E77731 /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		16F653362C7FA7E30049A669 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 166A5C322C7619B200E77731 /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1695FDE02B2C1DD300B14550 /* Project object */;
 }

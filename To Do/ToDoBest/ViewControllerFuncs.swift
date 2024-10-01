@@ -18,57 +18,180 @@ extension ViewController {
     
     func deleteElement () {
         var notificationIds: [String] = []
+        var flag: Bool = false
         if (viewDeep == 1) {
-            let listsCount = listsClient[currentDir].count - 1
-            if (listsCount >= 0) {
-                for i in 0...listsCount {
-                    let tasksCount = tasksClient[currentDir][i].count - 1
-                    if (tasksCount >= 0) {
-                        for j in 0...tasksCount {
-                            let id = dirsClient[currentDir] + "/" + listsClient[currentDir][i] + "/" + tasksClient[currentDir][i][j]
+            
+            let dirName: String = dataBase.select(
+                table: "folders",
+                parameters: "name",
+                condition: "id = \(currentDir)"
+            )[0]["0"] as! String
+            
+            let lists: [String] = dataBase.dictToListString(
+                dict: dataBase.select(
+                    table: "lists",
+                    parameters: "name",
+                    condition: "folder = \(currentDir)"
+                )
+            )
+            
+            if (!lists.isEmpty) {
+                for i in 0...(lists.count - 1) {
+                    
+                    let listId: Int = dataBase.select(
+                        table: "lists",
+                        parameters: "id",
+                        condition: "name = '\(lists[i])' and folder = \(currentDir)"
+                    )[0]["0"] as! Int
+                    
+                    let tasks: [String] = dataBase.dictToListString(
+                        dict: dataBase.select(
+                            table: "tasks",
+                            parameters: "name",
+                            condition: "list = \(listId)"
+                        )
+                    )
+                    
+                    if (!tasks.isEmpty) {
+                        for j in 0...(tasks.count - 1) {
+                            let id = "\(dirName)/\(lists[i])/\(tasks[j])"
                             notificationIds.append(id + "1")
                             notificationIds.append(id + "2")
+                            
+                            let taskId: Int = dataBase.select(
+                                table: "tasks",
+                                parameters: "id",
+                                condition: "name = '\(tasks[j])' and list = \(listId)"
+                            )[0]["0"] as! Int
+                            
+                            dataBase.delete(
+                                table: "taskProperties",
+                                condition: "task = \(taskId)",
+                                userId: userId
+                            )
+                            
+                            dataBase.delete(
+                                table: "tasks",
+                                condition: "id = \(taskId)",
+                                userId: userId
+                            )
                         }
                     }
+                    
+                    flag = dataBase.select(
+                        table: "settings",
+                        parameters: "standartList",
+                        condition: "user = \(userId)"
+                    )[0]["0"] as! Int == listId
+                    
+                    if (flag) {
+                        dataBase.update(
+                            table: "settings",
+                            parameters: "standartListǃNULL",
+                            condition: "user = \(userId)",
+                            userId: userId
+                        )
+                    }
+                    
+                    dataBase.delete(
+                        table: "lists",
+                        condition: "id = \(listId)",
+                        userId: userId
+                    )
                 }
             }
-            dirsClient.remove(at: currentDir)
-            dirsPropertiesClient.remove(at: currentDir)
-            listsClient.remove(at: currentDir)
-            listsPropertiesClient.remove(at: currentDir)
-            tasksClient.remove(at: currentDir)
-            tasksPropertiesClient.remove(at: currentDir)
+            
+            flag = dataBase.select(
+                table: "settings",
+                parameters: "standartFolder",
+                condition: "user = \(userId)"
+            )[0]["0"] as! Int == currentDir
+            
+            if (flag) {
+                dataBase.update(
+                    table: "settings",
+                    parameters: "standartFolderǃNULL",
+                    condition: "user = \(userId)",
+                    userId: userId
+                )
+            }
+            
+            dataBase.delete(
+                table: "folder",
+                condition: "id = \(currentDir)",
+                userId: userId
+            )
+            
         }
         else if (viewDeep == 2) {
-            let tasksCount = tasksClient[currentDir][currentList].count - 1
-            if (tasksCount >= 0) {
-                for i in 0...tasksCount {
-                    let id = dirsClient[currentDir] + "/" + listsClient[currentDir][currentList] + "/" + tasksClient[currentDir][currentList][i]
+            
+            let dirName: String = dataBase.select(
+                table: "folders",
+                parameters: "name",
+                condition: "id = \(currentDir)"
+            )[0]["0"] as! String
+            
+            let listName: String = dataBase.select(
+                table: "lists",
+                parameters: "name",
+                condition: "id = \(currentList)"
+            )[0]["0"] as! String
+            
+            let tasks: [String] = dataBase.dictToListString(
+                dict: dataBase.select(
+                    table: "tasks",
+                    parameters: "name",
+                    condition: "list = \(currentList)"
+                )
+            )
+            
+            if (!tasks.isEmpty) {
+                for i in 0...(tasks.count - 1) {
+                    let id = "\(dirName)/\(listName)/\(tasks[i])"
                     notificationIds.append(id + "1")
                     notificationIds.append(id + "2")
+                    
+                    let taskId: Int = dataBase.select(
+                        table: "tasks",
+                        parameters: "id",
+                        condition: "name = '\(tasks[i])' and list = \(currentList)"
+                    )[0]["0"] as! Int
+                    
+                    dataBase.delete(
+                        table: "taskProperties",
+                        condition: "task = \(taskId)",
+                        userId: userId
+                    )
+                    
+                    dataBase.delete(
+                        table: "tasks",
+                        condition: "id = \(taskId)",
+                        userId: userId
+                    )
                 }
             }
-            listsClient[currentDir].remove(at: currentList)
-            listsPropertiesClient[currentDir].remove(at: currentList)
-            tasksClient[currentDir].remove(at: currentList)
-            tasksPropertiesClient[currentDir].remove(at: currentList)
+            
+            dataBase.delete(
+                table: "lists",
+                condition: "id = \(currentList)",
+                userId: userId
+            )
         }
         cancelNotification(ids: notificationIds)
         viewDeep -= 1
-        saveData()
     }
     
     func messageBoxShow (title: String, message: String, delFlag: Bool, completeFlag: Bool = false, secondActionText: String, sender: UIButton) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         if (delFlag) {
-            let deleteAction = UIAlertAction(title: languageDirctionary["MessageBoxActionDelete"].unsafelyUnwrapped, style: .destructive) { _ in
+            let deleteAction = UIAlertAction(title: languageDirctionary["MessageBoxActionDelete"]!, style: .destructive) { _ in
                 self.pageLoader(delete: true)
             }
             deleteAction.setValue(UIColor.red, forKey: "titleTextColor")
             alertController.addAction(deleteAction)
         }
         if (completeFlag) {
-            let completeAction = UIAlertAction(title: languageDirctionary["MessageBoxActionComplete"].unsafelyUnwrapped, style: .destructive) { _ in
+            let completeAction = UIAlertAction(title: languageDirctionary["MessageBoxActionComplete"]!, style: .destructive) { _ in
                 self.mainPageScrollButtonCompleteTask(sender: sender)
             }
             completeAction.setValue(UIColor.red, forKey: "titleTextColor")
@@ -84,7 +207,6 @@ extension ViewController {
             let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
             let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
             NotificationController.scheduleNotificationAtSpecificTime(title: title, body: body, dateComponents: dateComponents, id: id)
-            print(id, timestamp)
         }
     }
     
@@ -92,7 +214,17 @@ extension ViewController {
         if (notificationsIsOn) {
             var id_ = ""
             if (task != "") {
-                id_ = dirsClient[currentDir] + "/" + listsClient[currentDir][currentList] + "/" + task
+                let dirName: String = dataBase.select(
+                    table: "folders",
+                    parameters: "name",
+                    condition: "id = \(currentDir)"
+                )[0]["0"] as! String
+                let listName: String = dataBase.select(
+                    table: "lists",
+                    parameters: "name",
+                    condition: "id = \(currentList)"
+                )[0]["0"] as! String
+                id_ = "\(dirName)/\(listName)/\(task)"
             }
             NotificationController.cancelNotification(ids: [id])
             NotificationController.cancelNotification(ids: [id_])
@@ -101,22 +233,80 @@ extension ViewController {
     }
     
     func sendAllNotifications () {
-        let dirsCount: Int = dirsClient.count - 1
-        if (dirsCount >= 0) {
-            for dir in 0...dirsCount {
-                let listCount: Int = listsClient[dir].count - 1
-                if (listCount >= 0) {
-                    for list in 0...listCount {
-                        let taskCount: Int = tasksClient[dir][list].count - 1
-                        if (taskCount >= 0) {
-                            for task in 0...taskCount {
-                                let taskPropertiesCount: Int = tasksPropertiesClient[dir][list][task].count - 1
-                                if (taskPropertiesCount >= 2) {
-                                    let timestamp: String = tasksPropertiesClient[dir][list][task][1]
-                                    if (timestamp != "") {
-                                        let id_ = dirsClient[dir] + "/" + listsClient[dir][list] + "/" + tasksClient[dir][list][task]
-                                        sendNotification(id: id_ + "1", title: tasksClient[dir][list][task], body: languageDirctionary["NotificationDeadline"].unsafelyUnwrapped, timestamp: Int(timestamp).unsafelyUnwrapped)
-                                        sendNotification(id: id_ + "2", title: tasksClient[dir][list][task], body: languageDirctionary["NotificationDeadlineSoon"].unsafelyUnwrapped, timestamp: Int(timestamp).unsafelyUnwrapped - settingsDatePickerTimestamp)
+        let dirs: [String] = dataBase.dictToListString(
+            dict: dataBase.select(
+                table: "folders",
+                parameters: "name",
+                condition: "user = \(userId)"
+            )
+        )
+        if (!dirs.isEmpty) {
+            for dir in 0...(dirs.count - 1) {
+                
+                let dirId: Int = Int(exactly: dataBase.select(
+                    table: "folders",
+                    parameters: "id",
+                    condition: "name = '\(dirs[dir])' and user = \(userId)"
+                )[0]["0"] as! Int64)!
+                
+                let lists: [String] = dataBase.dictToListString(
+                    dict: dataBase.select(
+                        table: "lists",
+                        parameters: "name",
+                        condition: "folder = \(dirId)"
+                    )
+                )
+                
+                if (!lists.isEmpty) {
+                    for list in 0...(lists.count - 1) {
+                        
+                        let listId: Int = Int(exactly: dataBase.select(
+                            table: "lists",
+                            parameters: "id",
+                            condition: "name = '\(lists[list])' and folder = \(dirId)"
+                        )[0]["0"] as! Int64)!
+                        
+                        let tasks: [String] = dataBase.dictToListString(
+                            dict: dataBase.select(
+                                table: "tasks",
+                                parameters: "name",
+                                condition: "list = \(listId)"
+                            )
+                        )
+                        
+                        if (!tasks.isEmpty) {
+                            for task in 0...(tasks.count - 1) {
+                                
+                                let taskId: Int = Int(exactly: dataBase.select(
+                                    table: "tasks",
+                                    parameters: "id",
+                                    condition: "name = '\(tasks[task])' and list = \(listId)"
+                                )[0]["0"] as! Int64)!
+                                
+                                let request = dataBase.select(
+                                    table: "taskProperties",
+                                    parameters: "timestamp",
+                                    condition: "task = \(taskId)"
+                                )
+                                
+                                if (!request.isEmpty) {
+                                    if let timestamp = request[0]["0"] as? Int64 {
+                                        
+                                        let id = "\(dirs[dir])/\(lists[list])/\(tasks[task])"
+                                        
+                                        sendNotification(
+                                            id: id + "1",
+                                            title: tasks[task],
+                                            body: languageDirctionary["NotificationDeadline"]!,
+                                            timestamp: Int(exactly: timestamp)!
+                                        )
+                                        
+                                        sendNotification(
+                                            id: id + "2",
+                                            title: tasks[task],
+                                            body: languageDirctionary["NotificationDeadlineSoon"]!,
+                                            timestamp: Int(exactly: timestamp)! - settingsDatePickerTimestamp
+                                        )
                                     }
                                 }
                             }
@@ -132,31 +322,31 @@ extension ViewController {
             .font: UIFont.systemFont(ofSize: 25),
             .foregroundColor: UIColor.link
         ]
-        newPSDLabelTextPattern = languageDirctionary["NewPSDLabelTextPattern"].unsafelyUnwrapped
-        var attributedText = NSAttributedString(string: languageDirctionary["MainPageBackButton"].unsafelyUnwrapped, attributes: attributes)
+        newPSDLabelTextPattern = languageDirctionary["NewPSDLabelTextPattern"]!
+        var attributedText = NSAttributedString(string: languageDirctionary["MainPageBackButton"]!, attributes: attributes)
         MainPageBackButton.setAttributedTitle(attributedText, for: .normal)
-        attributedText = NSAttributedString(string: languageDirctionary["NewPSDContinueButton"].unsafelyUnwrapped, attributes: attributes)
+        attributedText = NSAttributedString(string: languageDirctionary["NewPSDContinueButton"]!, attributes: attributes)
         NewPSDContinueButton.setAttributedTitle(attributedText, for: .normal)
-        SettingsFolderLabel.text = languageDirctionary["SettingsFoldersLabel"].unsafelyUnwrapped
-        SettingsDirectoryLabel.text = languageDirctionary["SettingsChooseDir"].unsafelyUnwrapped
-        SettingsListsLabel.text = languageDirctionary["SettingsListsLabel"].unsafelyUnwrapped
-        SettingsChooseListLabel.text = languageDirctionary["SettingsChooseList"].unsafelyUnwrapped
-        SettingsNotificationCategoryLabel.text = languageDirctionary["SettingsCategoryNotifications"].unsafelyUnwrapped
-        SettingsNotificationLabel.text = languageDirctionary["SettingsNotificationsLabel"].unsafelyUnwrapped
-        SettingsNotificationsAdditionLabel.text = languageDirctionary["SettingsChooseTimeLabel"].unsafelyUnwrapped
-        TaskInfoDateLabel.text = languageDirctionary["TaskInfoTaskDateLabel"].unsafelyUnwrapped
-        TaskInfoDecriptionLabel.text = languageDirctionary["TaskInfoTaskDescriptionLabel"].unsafelyUnwrapped
-        SettingsMainLabel.text = languageDirctionary["SettingsMainLabel"].unsafelyUnwrapped
-        SettingsOnOffDirCategoryLabel.text = languageDirctionary["SettingsCategoryDirs"].unsafelyUnwrapped
-        SettingsLanguageLabel.text = languageDirctionary["SettingsLanguageLabel"].unsafelyUnwrapped
-        SettingsAskToCompleteLabel.text = languageDirctionary["SettingsAskToCompleteTaskLabel"].unsafelyUnwrapped
-        attributedText = NSAttributedString(string: languageDirctionary["SettingsBackButton"].unsafelyUnwrapped, attributes: attributes)
+        SettingsFolderLabel.text = languageDirctionary["SettingsFoldersLabel"]!
+        SettingsDirectoryLabel.text = languageDirctionary["SettingsChooseDir"]!
+        SettingsListsLabel.text = languageDirctionary["SettingsListsLabel"]!
+        SettingsChooseListLabel.text = languageDirctionary["SettingsChooseList"]!
+        SettingsNotificationCategoryLabel.text = languageDirctionary["SettingsCategoryNotifications"]!
+        SettingsNotificationLabel.text = languageDirctionary["SettingsNotificationsLabel"]!
+        SettingsNotificationsAdditionLabel.text = languageDirctionary["SettingsChooseTimeLabel"]!
+        TaskInfoDateLabel.text = languageDirctionary["TaskInfoTaskDateLabel"]!
+        TaskInfoDecriptionLabel.text = languageDirctionary["TaskInfoTaskDescriptionLabel"]!
+        SettingsMainLabel.text = languageDirctionary["SettingsMainLabel"]!
+        SettingsOnOffDirCategoryLabel.text = languageDirctionary["SettingsCategoryDirs"]!
+        SettingsLanguageLabel.text = languageDirctionary["SettingsLanguageLabel"]!
+        SettingsAskToCompleteLabel.text = languageDirctionary["SettingsAskToCompleteTaskLabel"]!
+        attributedText = NSAttributedString(string: languageDirctionary["SettingsBackButton"]!, attributes: attributes)
         SettingsBackButton.setAttributedTitle(attributedText, for: .normal)
-        TaskInfoMainLabel.text = languageDirctionary["TaskInfoMainLabel"].unsafelyUnwrapped
-        TaskInfoTaskLabel.text = languageDirctionary["TaskInfoTaskNameLabel"].unsafelyUnwrapped
-        attributedText = NSAttributedString(string: languageDirctionary["TaskInfoBackButton"].unsafelyUnwrapped, attributes: attributes)
+        TaskInfoMainLabel.text = languageDirctionary["TaskInfoMainLabel"]!
+        TaskInfoTaskLabel.text = languageDirctionary["TaskInfoTaskNameLabel"]!
+        attributedText = NSAttributedString(string: languageDirctionary["TaskInfoBackButton"]!, attributes: attributes)
         TaskInfoBackButton.setAttributedTitle(attributedText, for: .normal)
-        attributedText = NSAttributedString(string: languageDirctionary["TaskInfoSaveButton"].unsafelyUnwrapped, attributes: attributes)
+        attributedText = NSAttributedString(string: languageDirctionary["TaskInfoSaveButton"]!, attributes: attributes)
         TaskInfoSaveButton.setAttributedTitle(attributedText, for: .normal)
         sendAllNotifications()
         pageLoader(animationDuaration: 0.0)

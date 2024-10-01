@@ -16,59 +16,50 @@ extension ViewController {
     
     func newPSDContinueButtonAction (sender: UIButton) {
         NewPSDTextField.resignFirstResponder()
-        let nameForNew = NewPSDTextField.text.unsafelyUnwrapped
+        let nameForNew = NewPSDTextField.text!
         if (nameForNew.replacingOccurrences(of: " ", with: "") != "") {
-            if (viewDeep == 0) {
-                if (dirsClient.contains(nameForNew)) {
-                    messageBoxShow(title: languageDirctionary["MessageBoxExistErrorTitle"].unsafelyUnwrapped, message: languageDirctionary["MessageBoxExistErrorBodyFolder"].unsafelyUnwrapped, delFlag: false, secondActionText: languageDirctionary["MessageBoxExistErrorSecondAction"].unsafelyUnwrapped, sender: sender)
-                }
-                else {
-                    mainPageScrollAddingButton(buttonName: nameForNew, animate: true)
-                    dirsClient.append(nameForNew)
-                    dirsPropertiesClient.append([buttonColor.toHexString()])
-                    listsClient.append([])
-                    listsPropertiesClient.append([])
-                    tasksClient.append([])
-                    tasksPropertiesClient.append([])
-                    NewPSDTextField.text = ""
-                    NewPSDClose()
-                    saveData()
-                    buttonColor = UIColor.clear
-                }
+            let viewWords = [
+                ["folders", String(userId), "user"],
+                ["lists", String(currentDir), "folder"],
+                ["tasks", String(currentList), "list"]
+            ]
+            let mass = dataBase.dictToListString(
+                dict: dataBase.select(
+                    table: viewWords[viewDeep][0],
+                    parameters: "name",
+                    condition: "\(viewWords[viewDeep][2]) = \(Int(viewWords[viewDeep][1])!)"
+                )
+            )
+            if (mass.contains(nameForNew)) {
+                messageBoxShow(
+                    title: languageDirctionary["MessageBoxExistErrorTitle"]!,
+                    message: languageDirctionary["MessageBoxExistErrorBodyFolder"]!,
+                    delFlag: false,
+                    secondActionText: languageDirctionary["MessageBoxExistErrorSecondAction"]!,
+                    sender: sender
+                )
             }
-            else if (viewDeep == 1) {
-                if (listsClient[currentDir].contains(nameForNew)) {
-                    messageBoxShow(title: languageDirctionary["MessageBoxExistErrorTitle"].unsafelyUnwrapped, message: languageDirctionary["MessageBoxExistErrorBodyList"].unsafelyUnwrapped, delFlag: false, secondActionText: languageDirctionary["MessageBoxExistErrorSecondAction"].unsafelyUnwrapped, sender: sender)
-                }
-                else {
-                    mainPageScrollAddingButton(buttonName: nameForNew, animate: true)
-                    listsClient[currentDir].append(nameForNew)
-                    listsPropertiesClient[currentDir].append([buttonColor.toHexString()])
-                    tasksClient[currentDir].append([])
-                    tasksPropertiesClient[currentDir].append([])
-                    NewPSDTextField.text = ""
-                    NewPSDClose()
-                    saveData()
-                    buttonColor = UIColor.clear
-                }
-            }
-            else if (viewDeep == 2) {
-                if (tasksClient[currentDir][currentList].contains(nameForNew)) {
-                    messageBoxShow(title: languageDirctionary["MessageBoxExistErrorTitle"].unsafelyUnwrapped, message: languageDirctionary["MessageBoxExistErrorBodyTask"].unsafelyUnwrapped, delFlag: false, secondActionText: languageDirctionary["MessageBoxExistErrorSecondAction"].unsafelyUnwrapped, sender: sender)
-                }
-                else {
-                    mainPageScrollAddingButton(buttonName: nameForNew, animate: true)
-                    tasksClient[currentDir][currentList].append(nameForNew)
-                    tasksPropertiesClient[currentDir][currentList].append([buttonColor.toHexString(), "", ""])
-                    NewPSDTextField.text = ""
-                    NewPSDClose()
-                    saveData()
-                    buttonColor = UIColor.clear
-                }
+            else {
+                mainPageScrollAddingButton(buttonName: nameForNew, animate: true)
+                let color: String = buttonColor == UIColor.clear ? "Clear" : buttonColor.toHexString()
+                dataBase.insert(
+                    table: viewWords[viewDeep][0],
+                    parameters: "\(Int(viewWords[viewDeep][1])!)ǃǃ'\(nameForNew)'ǃǃ'\(color)'",
+                    userId: userId
+                )
+                NewPSDTextField.text = ""
+                NewPSDClose()
+                buttonColor = UIColor.clear
             }
         }
         else {
-            messageBoxShow(title: languageDirctionary["MessageBoxEmptyErrorTitle"].unsafelyUnwrapped, message: languageDirctionary["MessageBoxEmptyErrorBody"].unsafelyUnwrapped, delFlag: false, secondActionText: languageDirctionary["MessageBoxEmptyErrorSecondAction"].unsafelyUnwrapped, sender: sender)
+            messageBoxShow(
+                title: languageDirctionary["MessageBoxEmptyErrorTitle"]!,
+                message: languageDirctionary["MessageBoxEmptyErrorBody"]!,
+                delFlag: false,
+                secondActionText: languageDirctionary["MessageBoxEmptyErrorSecondAction"]!,
+                sender: sender
+            )
         }
     }
     
@@ -92,21 +83,12 @@ extension ViewController {
     }
     
     func newPSDAddingToPattern () -> String {
-        if (viewDeep == 0) {
-            return languageDirctionary["NewPSDAddingToPatternFolder"].unsafelyUnwrapped
-        }
-        else if (viewDeep == 1) {
-            return languageDirctionary["NewPSDAddingToPatternList"].unsafelyUnwrapped
-        }
-        else if (viewDeep == 2) {
-            return languageDirctionary["NewPSDAddingToPatternTask"].unsafelyUnwrapped
-        }
-        return ""
+        let viewWords: [String] = ["Folder", "List", "Task"]
+        return languageDirctionary["NewPSDAddingToPattern\(viewWords[viewDeep])"]!
     }
     
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        let selectedColor = viewController.selectedColor
-        buttonColor = selectedColor
+        buttonColor = viewController.selectedColor
         dismiss(animated: true, completion: nil)
     }
 }

@@ -14,7 +14,7 @@ class NotificationController {
         content.sound = UNNotificationSound.default
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request) { (error) in if let error = error {} else {} }
+        UNUserNotificationCenter.current().add(request) { (error) in if error != nil {} else {} }
     }
     
     static func cancelNotification(ids: [String]) {

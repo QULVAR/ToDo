@@ -3,6 +3,7 @@ import UIKit
 extension ViewController {
     
     func mainPageViewDidLoad () {
+        MainPage.isHidden = false
         MainPage.frame.size = CGSize(width: MainView.frame.width, height: MainView.frame.height)
         mainPageMainLabel()
         mainPageUpperLabel()
@@ -33,12 +34,12 @@ extension ViewController {
     func mainPageTrashButtonAction (sender: UIButton) {
         var s: String = ""
         if (viewDeep == 1) {
-            s = languageDirctionary["MainPageTrashButtonFolder"].unsafelyUnwrapped
+            s = languageDirctionary["MainPageTrashButtonFolder"]!
         }
         else if (viewDeep == 2) {
-            s = languageDirctionary["MainPageTrashButtonList"].unsafelyUnwrapped
+            s = languageDirctionary["MainPageTrashButtonList"]!
         }
-        messageBoxShow(title: languageDirctionary["MessageBoxDeleteTitle"].unsafelyUnwrapped, message: languageDirctionary["MessageBoxDeleteBody"].unsafelyUnwrapped + s + "?", delFlag: true, secondActionText: languageDirctionary["MessageBoxDeleteSecondAction"].unsafelyUnwrapped, sender: sender)
+        messageBoxShow(title: languageDirctionary["MessageBoxDeleteTitle"]!, message: languageDirctionary["MessageBoxDeleteBody"]! + s + "?", delFlag: true, secondActionText: languageDirctionary["MessageBoxDeleteSecondAction"]!, sender: sender)
     }
     
     func mainPageBackButtonAction(sender: UIButton) {
@@ -83,44 +84,34 @@ extension ViewController {
                 self.MainPageInfoModeButton.isSelected = false
                 self.taskInfoOpen = false
             }
+            
+            let viewWords = [["folder", "folders", "user", String(self.userId)], ["list", "lists", "folder", String(self.currentDir)], ["task", "tasks", "list", String(self.currentList)]]
+
+            let data = self.dataBase.select(
+                table: viewWords[self.viewDeep][1],
+                parameters: "*",
+                condition: "\(viewWords[self.viewDeep][2]) = \(Int(viewWords[self.viewDeep][3])!)"
+            )
+            if (!data.isEmpty) {
+                for i in 0...(data.count - 1) {
+                    let color = data[i]["3"] as! String
+                    if (color != "Clear") {
+                        self.buttonColor = UIColor(hex: color)!
+                    }
+                    self.mainPageScrollAddingButton(buttonName: data[i]["2"] as! String, animate: false)
+                    self.buttonColor = UIColor.clear
+                }
+            }
+            
             if (self.viewDeep == 0) {
                 self.mainPageUpperLabel()
-                let dirs: Int = self.dirsClient.count - 1
-                if (dirs >= 0) {
-                    for i in 0...dirs {
-                        if (self.dirsPropertiesClient[i].count > 0) {
-                            self.buttonColor = UIColor(hex: self.dirsPropertiesClient[i][0]).unsafelyUnwrapped
-                        }
-                        self.mainPageScrollAddingButton(buttonName: self.dirsClient[i], animate: false)
-                        self.buttonColor = UIColor.clear
-                    }
-                }
             }
-            else if (self.viewDeep == 1) {
-                self.mainPageUpperLabel(mainPageUpperLabelText: self.dirsClient[self.currentDir])
-                let lists: Int = self.listsClient[self.currentDir].count - 1
-                if (lists >= 0) {
-                    for i in 0...lists {
-                        if (self.listsPropertiesClient[self.currentDir][i].count > 0) {
-                            self.buttonColor = UIColor(hex: self.listsPropertiesClient[self.currentDir][i][0]).unsafelyUnwrapped
-                        }
-                        self.mainPageScrollAddingButton(buttonName: self.listsClient[self.currentDir][i], animate: false)
-                        self.buttonColor = UIColor.clear
-                    }
-                }
-            }
-            else if (self.viewDeep == 2) {
-                self.mainPageUpperLabel(mainPageUpperLabelText: self.listsClient[self.currentDir][self.currentList])
-                let tasks: Int = self.tasksClient[self.currentDir][self.currentList].count - 1
-                if (tasks >= 0) {
-                    for i in 0...tasks {
-                        if (self.tasksPropertiesClient[self.currentDir][self.currentList][i].count > 0) {
-                            self.buttonColor = UIColor(hex: self.tasksPropertiesClient[self.currentDir][self.currentList][i][0]).unsafelyUnwrapped
-                        }
-                        self.mainPageScrollAddingButton(buttonName: self.tasksClient[self.currentDir][self.currentList][i], animate: false)
-                        self.buttonColor = UIColor.clear
-                    }
-                }
+            else {
+                let name = self.dataBase.select(table: viewWords[self.viewDeep - 1][1],
+                                                parameters: "name",
+                                                condition: "id = \(Int(viewWords[self.viewDeep][3])!)"
+                )[0]["0"] as! String
+                self.mainPageUpperLabel(mainPageUpperLabelText: name)
             }
             self.MainPage.frame.origin.x -= 2 * mainPageFrameWidth
             UIView.animate(withDuration: animationDuaration, animations: {
@@ -133,26 +124,76 @@ extension ViewController {
     @objc func mainPageScrollButton (_ sender: UIButton) {
         if (viewDeep == 0) {
             viewDeep += 1
-            currentDir = dirsClient.firstIndex(of: sender.title(for: .normal).unsafelyUnwrapped).unsafelyUnwrapped
-            pageLoader(origin: "Right")
+            currentDir = Int(exactly: dataBase.select(
+                table: "folders",
+                parameters: "id",
+                condition: "name = '\(sender.title(for: .normal)!)' and user = \(userId)"
+            )[0]["0"] as! Int64)!
+            
+            pageLoader()
         }
         else if (viewDeep == 1) {
             viewDeep += 1
-            currentList = listsClient[currentDir].firstIndex(of: sender.title(for: .normal).unsafelyUnwrapped).unsafelyUnwrapped
+            
+            currentList = Int(exactly: dataBase.select(
+                table: "lists",
+                parameters: "id",
+                condition: "name = '\(sender.title(for: .normal)!)' and folder = \(currentDir)"
+            )[0]["0"] as! Int64)!
+            
             pageLoader()
         }
         else if (viewDeep == 2) {
-            currentTask = tasksClient[currentDir][currentList].firstIndex(of: sender.title(for: .normal)!).unsafelyUnwrapped
+            
+            currentTask = Int(exactly: dataBase.select(
+                table: "tasks",
+                parameters: "id",
+                condition: "name = '\(sender.title(for: .normal)!)' and list = \(currentList)"
+            )[0]["0"] as! Int64)!
+            
             if (taskInfoOpen) {
                 TaskInfo.isHidden = false
-                while (tasksPropertiesClient[currentDir][currentList][currentTask].count != 3) {
-                    tasksPropertiesClient[currentDir][currentList][currentTask].append("")
+                
+                let taskName = dataBase.select(
+                    table: "tasks",
+                    parameters: "name",
+                    condition: "id = \(currentTask)"
+                )[0]["0"] as! String
+               
+                let request = dataBase.select(
+                    table: "taskProperties",
+                    parameters: "description",
+                    condition: "task = \(currentTask)"
+                )
+                
+                var taskDescription: String = ""
+                
+                if (request.isEmpty) {
+                    dataBase.insert(
+                        table: "taskProperties",
+                        parameters: "\(currentTask)ǃǃ''ǃǃNULL",
+                        userId: userId
+                    )
                 }
-                taskInfoLoader(name: tasksClient[currentDir][currentList][currentTask], description: tasksPropertiesClient[currentDir][currentList][currentTask][2])
+                else {
+                    taskDescription = request[0]["0"] as! String
+                }
+                
+                taskInfoLoader(
+                    name: taskName,
+                    description: taskDescription
+                )
             }
             else {
                 if (messageCompleteTask) {
-                    messageBoxShow(title: languageDirctionary["MessageBoxCompleteTaskTitle"].unsafelyUnwrapped, message: languageDirctionary["MessageBoxCompleteTaskBody"].unsafelyUnwrapped, delFlag: false, completeFlag: true, secondActionText: languageDirctionary["MessageBoxCompleteTaskSecondAction"].unsafelyUnwrapped, sender: sender)
+                    messageBoxShow(
+                        title: languageDirctionary["MessageBoxCompleteTaskTitle"]!,
+                        message: languageDirctionary["MessageBoxCompleteTaskBody"]!,
+                        delFlag: false,
+                        completeFlag: true,
+                        secondActionText: languageDirctionary["MessageBoxCompleteTaskSecondAction"]!,
+                        sender: sender
+                    )
                 }
                 else {
                     mainPageScrollButtonCompleteTask(sender: sender)
@@ -165,18 +206,33 @@ extension ViewController {
         sender.isEnabled = false
         scrollViewButtonPressed = true
         textSize = sender.titleLabel?.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)) ?? CGSize.zero
-        let index: Int = scrollButtons.firstIndex(of: sender).unsafelyUnwrapped
-        sender.addSubview(lineView.unsafelyUnwrapped)
+        let index: Int = scrollButtons.firstIndex(of: sender)!
+        sender.addSubview(lineView!)
         UIView.animate(withDuration: 0.4, animations: {
             self.lineView?.frame = CGRect(x: 0, y: sender.frame.height / 2, width: self.textSize!.width, height: 1)
         }, completion: {_ in
             UIView.animate(withDuration: 0.4, animations: {
                 self.scrollButtons[index].alpha = 0.0
             }, completion: {_ in
-                self.cancelNotification(task: self.tasksClient[self.currentDir][self.currentList][self.currentTask] + "1")
-                self.cancelNotification(task: self.tasksClient[self.currentDir][self.currentList][self.currentTask] + "2")
-                self.tasksPropertiesClient[self.currentDir][self.currentList].remove(at: self.currentTask)
-                self.tasksClient[self.currentDir][self.currentList].remove(at: self.currentTask)
+                
+                let task: String = self.dataBase.select(
+                    table: "tasks",
+                    parameters: "name",
+                    condition: "list = \(self.currentList)"
+                )[0]["0"] as! String
+                
+                self.cancelNotification(task: task + "1")
+                self.cancelNotification(task: task + "2")
+                self.dataBase.delete(
+                    table: "taskProperties",
+                    condition: "task = \(self.currentTask)",
+                    userId: self.userId
+                )
+                self.dataBase.delete(
+                    table: "tasks",
+                    condition: "id = \(self.currentTask)",
+                    userId: self.userId
+                )
                 self.scrollButtons.remove(at: index)
                 if (index < self.scrollButtons.count) {
                     for i in index...(self.scrollButtons.count - 1) {
@@ -187,7 +243,6 @@ extension ViewController {
                 }
                 self.lineView?.frame = CGRect(x: 0, y: sender.frame.height / 2, width: 0, height: 1)
                 self.MainPageScroll.contentSize = CGSize(width: self.MainPageScroll.frame.size.width, height: self.MainPageScroll.contentSize.height - sender.frame.size.height - 20)
-                self.saveData()
                 self.scrollViewButtonPressed = false
             })
         })
@@ -239,27 +294,24 @@ extension ViewController {
             MainPageUpperLabel.backgroundColor = UIColor.clear
         }
         else {
-            if (viewDeep == 1) {
-                if (dirsPropertiesClient[currentDir].count > 0) {
-                    labelColor = UIColor(hex: dirsPropertiesClient[currentDir][0]).unsafelyUnwrapped
-                }
-            }
-            else if (viewDeep == 2) {
-                if (listsPropertiesClient[currentDir][currentList].count > 0) {
-                    labelColor = UIColor(hex: listsPropertiesClient[currentDir][currentList][0]).unsafelyUnwrapped
-                }
-            }
-            MainPageUpperLabel.backgroundColor = labelColor
-            if (labelColor != UIColor.clear) {
+            let viewWords: [[String]] = [["folders", String(currentDir)], ["lists", String(currentList)]]
+            let color: String = dataBase.select(
+                table: viewWords[viewDeep - 1][0],
+                parameters: "color",
+                condition: "id = \(Int(viewWords[viewDeep - 1][1])!)"
+            )[0]["0"] as! String
+            if (color != "Clear") {
+                labelColor = UIColor(hex: color)!
                 MainPageUpperLabel.textColor = MainPage.backgroundColor
             }
             else {
                 MainPageUpperLabel.textColor = UIColor.link
             }
+            MainPageUpperLabel.backgroundColor = labelColor
             labelColor = UIColor.clear
         }
         if (viewDeep == standartDeep) {
-            MainPageUpperLabel.text = languageDirctionary["MainPageUpperLabel"].unsafelyUnwrapped
+            MainPageUpperLabel.text = languageDirctionary["MainPageUpperLabel"]!
         }
         else if (viewDeep > standartDeep) {
             MainPageUpperLabel.text = mainPageUpperLabelText
@@ -267,14 +319,11 @@ extension ViewController {
     }
     
     func mainPageMainLabel () {
-        if (viewDeep == 0) {
-            MainPageMainLabel.text = languageDirctionary["MainPageMainLabelFolders"].unsafelyUnwrapped
-        }
-        else if (viewDeep == 1) {
-            MainPageMainLabel.text = languageDirctionary["MainPageMainLabelLists"].unsafelyUnwrapped
-        }
-        else if (viewDeep == 2) {
-            MainPageMainLabel.text = languageDirctionary["MainPageMainLabelTasks"].unsafelyUnwrapped
-        }
+        let viewWords: [String] = [
+            languageDirctionary["MainPageMainLabelFolders"]!,
+            languageDirctionary["MainPageMainLabelLists"]!,
+            languageDirctionary["MainPageMainLabelTasks"]!
+        ]
+        MainPageMainLabel.text = viewWords[viewDeep]
     }
 }

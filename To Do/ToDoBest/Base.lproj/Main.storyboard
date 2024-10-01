@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <accessibilityOverrides/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -108,6 +108,64 @@
                                     <constraint firstItem="DSH-jz-Aqs" firstAttribute="leading" secondItem="3ra-gI-TXz" secondAttribute="centerX" constant="-179" id="qFI-Xm-emM"/>
                                     <constraint firstItem="hgQ-W6-cw4" firstAttribute="centerY" secondItem="3ra-gI-TXz" secondAttribute="centerY" constant="-239" id="qhp-WP-xPW"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="Djt-Dh-se2">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="safeArea" id="esd-pQ-BL0"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="TcM-Xo-wf2">
+                                <rect key="frame" x="23" y="334" width="343" height="176"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oy1-YL-XH4">
+                                        <rect key="frame" x="23" y="82" width="297" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7D-Il-Q1P">
+                                        <rect key="frame" x="8" y="124" width="40" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="&lt;">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="NewPSDBackButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lBZ-FI-30e"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yR-Qm-sW3">
+                                        <rect key="frame" x="8" y="32" width="327" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2IH-Bf-kE1">
+                                        <rect key="frame" x="270" y="129" width="50" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="pencil.tip.crop.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="NewPSDSetColorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mfz-3I-uRX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTf-AU-zwd">
+                                        <rect key="frame" x="64" y="124" width="214" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Continue">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="NewPSDContinueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WTn-4W-ulo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="hn8-Vp-2VT"/>
+                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" id="Uvd-d4-Zml">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
@@ -380,99 +438,112 @@
                                     <constraint firstItem="mIu-aK-ag4" firstAttribute="centerY" secondItem="zrP-Oh-ULr" secondAttribute="centerY" constant="79" id="zP5-vZ-Vxe"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" id="Djt-Dh-se2">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <viewLayoutGuide key="safeArea" id="esd-pQ-BL0"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="TcM-Xo-wf2">
-                                <rect key="frame" x="23" y="334" width="343" height="176"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oy1-YL-XH4">
-                                        <rect key="frame" x="23" y="82" width="297" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7D-Il-Q1P">
-                                        <rect key="frame" x="8" y="124" width="40" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="&lt;">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="NewPSDBackButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lBZ-FI-30e"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yR-Qm-sW3">
-                                        <rect key="frame" x="8" y="32" width="327" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" name="AccentColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2IH-Bf-kE1">
-                                        <rect key="frame" x="270" y="129" width="50" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="pencil.tip.crop.circle" catalog="system"/>
-                                        <connections>
-                                            <action selector="NewPSDSetColorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mfz-3I-uRX"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTf-AU-zwd">
-                                        <rect key="frame" x="64" y="124" width="214" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Continue">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="NewPSDContinueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WTn-4W-ulo"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <viewLayoutGuide key="safeArea" id="hn8-Vp-2VT"/>
-                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
-                            </view>
                             <view contentMode="scaleToFill" id="Uh4-t5-93d">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUt-7m-cDu">
-                                        <rect key="frame" x="174" y="340" width="0.0" height="0.0"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8i2-Pp-XU3">
-                                        <rect key="frame" x="134" y="400" width="122" height="44"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Continue">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="ServerPageContinueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UeT-cl-8xJ"/>
-                                        </connections>
-                                    </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your login..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iOm-Ad-fDE">
-                                        <rect key="frame" x="49" y="345" width="293" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iOm-Ad-fDE">
+                                        <rect key="frame" x="49" y="292" width="293" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VS0-rN-d63">
+                                        <rect key="frame" x="49" y="352" width="293" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8i2-Pp-XU3">
+                                        <rect key="frame" x="146.66666666666666" y="400" width="96.666666666666657" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign in">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="AuthPageSignInButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UeT-cl-8xJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8d-AY-mcM">
+                                        <rect key="frame" x="269" y="47" width="106" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign up">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="AuthPageSignUpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nm4-bp-QzV"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="vKO-zE-1pR"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="iOm-Ad-fDE" firstAttribute="centerY" secondItem="Uh4-t5-93d" secondAttribute="centerY" constant="-57" id="CYH-gd-G2R"/>
-                                    <constraint firstItem="8i2-Pp-XU3" firstAttribute="centerY" secondItem="Uh4-t5-93d" secondAttribute="centerY" id="FID-fB-KAo"/>
-                                    <constraint firstItem="8i2-Pp-XU3" firstAttribute="centerX" secondItem="Uh4-t5-93d" secondAttribute="centerX" id="VVW-xM-tmX"/>
-                                    <constraint firstItem="iOm-Ad-fDE" firstAttribute="trailing" secondItem="Uh4-t5-93d" secondAttribute="centerX" constant="147" id="abR-o0-sPV"/>
-                                    <constraint firstItem="iOm-Ad-fDE" firstAttribute="leading" secondItem="Uh4-t5-93d" secondAttribute="centerX" constant="-146" id="ato-n3-4R9"/>
+                                    <constraint firstItem="iOm-Ad-fDE" firstAttribute="centerX" secondItem="Uh4-t5-93d" secondAttribute="centerX" id="JRs-g4-8xZ"/>
+                                    <constraint firstItem="VS0-rN-d63" firstAttribute="top" secondItem="iOm-Ad-fDE" secondAttribute="bottom" constant="20" id="KpU-R4-aSG"/>
+                                    <constraint firstItem="F8d-AY-mcM" firstAttribute="top" secondItem="vKO-zE-1pR" secondAttribute="top" id="L1Y-9z-H39"/>
+                                    <constraint firstItem="8i2-Pp-XU3" firstAttribute="centerY" secondItem="Uh4-t5-93d" secondAttribute="centerY" id="UnX-oD-iqB"/>
+                                    <constraint firstItem="F8d-AY-mcM" firstAttribute="leading" secondItem="vKO-zE-1pR" secondAttribute="leading" constant="269" id="Vus-Qi-EX5"/>
+                                    <constraint firstItem="iOm-Ad-fDE" firstAttribute="leading" secondItem="VS0-rN-d63" secondAttribute="leading" id="d5q-Y0-eX0"/>
+                                    <constraint firstItem="8i2-Pp-XU3" firstAttribute="top" secondItem="VS0-rN-d63" secondAttribute="bottom" constant="8" id="gQ5-1A-z6v"/>
+                                    <constraint firstItem="VS0-rN-d63" firstAttribute="centerX" secondItem="8i2-Pp-XU3" secondAttribute="centerX" id="hJI-9O-dmP"/>
+                                    <constraint firstItem="iOm-Ad-fDE" firstAttribute="leading" secondItem="vKO-zE-1pR" secondAttribute="leading" constant="49" id="rco-a7-fwn"/>
+                                    <constraint firstItem="iOm-Ad-fDE" firstAttribute="trailing" secondItem="VS0-rN-d63" secondAttribute="trailing" id="uGz-jQ-RCE"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="dDO-KK-DvG">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8V8-AC-sUd">
+                                        <rect key="frame" x="49" y="292" width="293" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tCy-d2-ZjV">
+                                        <rect key="frame" x="49" y="352" width="293" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbp-ef-5bg">
+                                        <rect key="frame" x="142" y="460" width="106" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign up">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="RegisterPageSignUpButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="waJ-IA-aoa"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAE-su-rLg">
+                                        <rect key="frame" x="49" y="412" width="293" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SsD-mV-DWg">
+                                        <rect key="frame" x="273" y="47" width="97" height="44"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign in">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="RegisterPageSignInButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W2M-yp-Jxy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="NSZ-43-Lht"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="tCy-d2-ZjV" firstAttribute="trailing" secondItem="HAE-su-rLg" secondAttribute="trailing" id="33q-BU-SqL"/>
+                                    <constraint firstItem="HAE-su-rLg" firstAttribute="centerX" secondItem="Lbp-ef-5bg" secondAttribute="centerX" id="8ex-bK-FJS"/>
+                                    <constraint firstItem="tCy-d2-ZjV" firstAttribute="leading" secondItem="HAE-su-rLg" secondAttribute="leading" id="9h8-xT-rXt"/>
+                                    <constraint firstItem="tCy-d2-ZjV" firstAttribute="top" secondItem="8V8-AC-sUd" secondAttribute="bottom" constant="20" id="BJB-FZ-3Pp"/>
+                                    <constraint firstItem="SsD-mV-DWg" firstAttribute="top" secondItem="NSZ-43-Lht" secondAttribute="top" id="DSj-zF-8sK"/>
+                                    <constraint firstItem="8V8-AC-sUd" firstAttribute="leading" secondItem="NSZ-43-Lht" secondAttribute="leading" constant="49" id="Rl5-bT-mqW"/>
+                                    <constraint firstItem="NSZ-43-Lht" firstAttribute="bottom" secondItem="Lbp-ef-5bg" secondAttribute="bottom" constant="306" id="S1K-F7-Ydu"/>
+                                    <constraint firstItem="8V8-AC-sUd" firstAttribute="leading" secondItem="tCy-d2-ZjV" secondAttribute="leading" id="din-On-cEJ"/>
+                                    <constraint firstItem="8V8-AC-sUd" firstAttribute="trailing" secondItem="tCy-d2-ZjV" secondAttribute="trailing" id="eeX-NP-cyt"/>
+                                    <constraint firstItem="8V8-AC-sUd" firstAttribute="centerX" secondItem="dDO-KK-DvG" secondAttribute="centerX" id="kAo-dm-I7s"/>
+                                    <constraint firstItem="HAE-su-rLg" firstAttribute="top" secondItem="tCy-d2-ZjV" secondAttribute="bottom" constant="20" id="l1y-u3-M89"/>
+                                    <constraint firstItem="SsD-mV-DWg" firstAttribute="leading" secondItem="NSZ-43-Lht" secondAttribute="leading" constant="273" id="wqM-yG-vY2"/>
+                                    <constraint firstItem="Lbp-ef-5bg" firstAttribute="top" secondItem="HAE-su-rLg" secondAttribute="bottom" constant="8" id="zwf-Tl-OUc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -480,6 +551,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="AuthPage" destination="Uh4-t5-93d" id="31c-8U-E22"/>
+                        <outlet property="AuthPageLoginTextField" destination="iOm-Ad-fDE" id="4H4-kl-X7m"/>
+                        <outlet property="AuthPagePasswordTextField" destination="VS0-rN-d63" id="Yeh-1F-ObA"/>
                         <outlet property="MainPage" destination="3ra-gI-TXz" id="MvV-ge-hJy"/>
                         <outlet property="MainPageBackButton" destination="uwW-Hm-2QU" id="Una-Bu-fLJ"/>
                         <outlet property="MainPageInfoModeButton" destination="pgf-P4-tgB" id="Wft-9A-t7H"/>
@@ -495,9 +569,10 @@
                         <outlet property="NewPSDContinueButton" destination="kTf-AU-zwd" id="NZf-9O-DBl"/>
                         <outlet property="NewPSDLabel" destination="8yR-Qm-sW3" id="nff-qn-7QE"/>
                         <outlet property="NewPSDTextField" destination="Oy1-YL-XH4" id="w6x-Zh-nDP"/>
-                        <outlet property="ServerPage" destination="Uh4-t5-93d" id="31c-8U-E22"/>
-                        <outlet property="ServerPageContinueButton" destination="8i2-Pp-XU3" id="BZn-ax-gdw"/>
-                        <outlet property="ServerPageTextField" destination="iOm-Ad-fDE" id="4H4-kl-X7m"/>
+                        <outlet property="RegisterPage" destination="dDO-KK-DvG" id="X8N-UP-0N3"/>
+                        <outlet property="RegisterPageLoginTextField" destination="8V8-AC-sUd" id="0oj-9X-Nyb"/>
+                        <outlet property="RegisterPagePasswordConfirmTextField" destination="HAE-su-rLg" id="iHd-xM-TcT"/>
+                        <outlet property="RegisterPagePasswordTextField" destination="tCy-d2-ZjV" id="GhX-ig-rwK"/>
                         <outlet property="Settings" destination="Uvd-d4-Zml" id="owS-I6-QbH"/>
                         <outlet property="SettingsAskToCompleteLabel" destination="bTg-2A-nBR" id="Gwk-Gd-J1J"/>
                         <outlet property="SettingsAskToCompleteSwitch" destination="XWB-go-1w1" id="Ilh-91-6eL"/>

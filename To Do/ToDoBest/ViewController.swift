@@ -6,16 +6,23 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
     //Views
     @IBOutlet var MainView: UIView!
     @IBOutlet weak var MainPage: UIView!
-    @IBOutlet var ServerPage: UIView!
+    @IBOutlet var AuthPage: UIView!
     @IBOutlet weak var NewPSD: UIView!
     @IBOutlet weak var Tint: UIView!
     @IBOutlet var Settings: UIView!
     @IBOutlet weak var TaskInfo: UIView!
+    @IBOutlet weak var RegisterPage: UIView!
     
     
-    //Server Page elements
-    @IBOutlet weak var ServerPageTextField: UITextField!
-    @IBOutlet weak var ServerPageContinueButton: UIButton!
+    //Auth Page elements
+    @IBOutlet weak var AuthPageLoginTextField: UITextField!
+    @IBOutlet weak var AuthPagePasswordTextField: UITextField!
+    
+    
+    //Register Page elements
+    @IBOutlet weak var RegisterPageLoginTextField: UITextField!
+    @IBOutlet weak var RegisterPagePasswordTextField: UITextField!
+    @IBOutlet weak var RegisterPagePasswordConfirmTextField: UITextField!
     
     
     //Main Page elements
@@ -74,7 +81,6 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
     
     //Variables for all project
     var languageDirctionary: [String: String] = ["":""]
-    var langs: [String] = ["English", "Русский"]
     var lang: String = "English"
     var const = 0.0
     var const1 = 0.0
@@ -98,43 +104,51 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
     var taskInfoDatePickerTimestamp: Int = 0
     var settingsDatePickerTimestamp: Int = 0
     
-    var settingsClient: [String] = ["", "", "", "", "", "", "", ""]
-    var dirsClient: [String] = []
-    var dirsPropertiesClient: [[String]] = []
-    var listsClient: [[String]] = []
-    var listsPropertiesClient: [[[String]]] = []
-    var tasksClient: [[[String]]] = []
-    var tasksPropertiesClient: [[[[String]]]] = []
-    var timestampClient: Int = 0
-    
-    var settingsServer: [String] = ["", "", "", "", "", "", "", ""]
-    var dirsServer: [String] = []
-    var dirsPropertiesServer: [[String]] = []
-    var listsServer: [[String]] = []
-    var listsPropertiesServer: [[[String]]] = []
-    var tasksServer: [[[String]]] = []
-    var tasksPropertiesServer: [[[[String]]]] = []
-    var timestampServer: Int = 0
-    
-    var serverSaveName: String = ""
-    
     let translation = LanguageExtension()
+    
+    let dataBase = try! DataBase()
+    var userId: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        serverSaveName = readFile(file: "Server.txt")
-        severPageViewDidLoad()
-        if (serverSaveName != "") {
-            viewControllerViewDidLoad()
+        MainPage.isHidden = true
+        TaskInfo.isHidden = true
+        Settings.isHidden = true
+        NewPSD.isHidden = true
+        Tint.isHidden = true
+        
+        if (dataBase.dataBaseViewDidLoad()) {
+            registerPageViewDidLoad()
+            authPageViewDidLoad()
         }
         else {
-            viewShow(object: ServerPage, duration: 0.0)
+            RegisterPage.isHidden = true
+            AuthPage.isHidden = true
+            viewControllerViewDidLoad()
         }
     }
     
     func viewControllerViewDidLoad () {
-        dataLoader()
-        lang = settingsClient[6]
+        MainPage.isHidden = false
+        TaskInfo.isHidden = false
+        Settings.isHidden = false
+        NewPSD.isHidden = false
+        Tint.isHidden = false
+        userId = Int(exactly: dataBase.select(
+            table: "users",
+            parameters: "id"
+        )[0]["0"] as! Int64)!
+        dataBase.synchronize(userId: userId)
+        let langId: Int = Int(exactly: dataBase.select(
+            table: "settings",
+            parameters: "language",
+            condition: "user = \(userId)"
+        )[0]["0"] as! Int64)!
+        lang = dataBase.select(
+            table: "languages",
+            parameters: "name",
+            condition: "id = \(langId)"
+        )[0]["0"] as! String
         languageDirctionary = translation.translate(lang: lang)
         setLanguage()
         NotificationController.requestPermission()
@@ -153,8 +167,20 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
         mainPagePlusButtonAction(sender: sender)
     }
     
-    @IBAction func ServerPageContinueButton(_ sender: UIButton) {
-        serverPageContinueButtonAction(sender: sender)
+    @IBAction func AuthPageSignInButton(_ sender: UIButton) {
+        authPageSignInButtonAction(sender: sender)
+    }
+    
+    @IBAction func AuthPageSignUpButton(_ sender: UIButton) {
+        authPageSignUpButtonAction(sender: sender)
+    }
+    
+    @IBAction func RegisterPageSignUpButton(_ sender: UIButton) {
+        registerPageSignInButtonAction(sender: sender)
+    }
+    
+    @IBAction func RegisterPageSignInButton(_ sender: UIButton) {
+        registerPageSignUpButtonAction(sender: sender)
     }
     
     @IBAction func NewPSDBackButton(_ sender: UIButton) {
