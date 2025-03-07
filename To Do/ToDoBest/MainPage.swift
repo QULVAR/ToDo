@@ -67,16 +67,16 @@ extension ViewController {
                 self.MainPageBackButton.isHidden = true
                 self.MainPageTrashButton.isHidden = true
                 if (self.viewDeep == 2) {
-                    self.MainPageInfoModeButton.frame.origin.x = self.MainPageTrashButton.frame.origin.x + 6.5
-                    self.MainPageInfoModeButton.frame.origin.y = self.MainPageTrashButton.frame.origin.y + 7
+                    self.MainPageInfoModeButton.frame.origin.x = self.MainPageTrashButton.frame.origin.x + 4
+                    self.MainPageInfoModeButton.frame.origin.y = self.MainPageTrashButton.frame.origin.y
                 }
             }
             else {
                 self.MainPageBackButton.isHidden = false
                 self.MainPageTrashButton.isHidden = false
                 if (self.viewDeep == 2) {
-                    self.MainPageInfoModeButton.frame.origin.x = self.MainPageTrashButton.frame.origin.x - self.MainPageInfoModeButton.frame.width
-                    self.MainPageInfoModeButton.frame.origin.y = self.MainPageTrashButton.frame.origin.y + 1
+                    self.MainPageInfoModeButton.frame.origin.x = self.MainPageTrashButton.frame.origin.x - 49
+                    self.MainPageInfoModeButton.frame.origin.y = self.MainPageTrashButton.frame.origin.y
                 }
             }
             self.MainPageInfoModeButton.isHidden = !(self.viewDeep == 2)
@@ -122,89 +122,97 @@ extension ViewController {
     
     
     @objc func mainPageScrollButton (_ sender: UIButton) {
-        if (viewDeep == 0) {
-            viewDeep += 1
-            currentDir = Int(exactly: dataBase.select(
-                table: "folders",
-                parameters: "id",
-                condition: "name = '\(sender.title(for: .normal)!)' and user = \(userId)"
-            )[0]["0"] as! Int64)!
-            
-            pageLoader()
-        }
-        else if (viewDeep == 1) {
-            viewDeep += 1
-            
-            currentList = Int(exactly: dataBase.select(
-                table: "lists",
-                parameters: "id",
-                condition: "name = '\(sender.title(for: .normal)!)' and folder = \(currentDir)"
-            )[0]["0"] as! Int64)!
-            
-            pageLoader()
-        }
-        else if (viewDeep == 2) {
-            
-            currentTask = Int(exactly: dataBase.select(
-                table: "tasks",
-                parameters: "id",
-                condition: "name = '\(sender.title(for: .normal)!)' and list = \(currentList)"
-            )[0]["0"] as! Int64)!
-            
-            if (taskInfoOpen) {
-                TaskInfo.isHidden = false
+        if (!scrollViewButtonPressed) {
+            scrollViewButtonPressed = true
+            if (viewDeep == 0) {
+                viewDeep += 1
+                currentDir = Int(exactly: dataBase.select(
+                    table: "folders",
+                    parameters: "id",
+                    condition: "name = '\(sender.title(for: .normal)!)' and user = \(userId)"
+                )[0]["0"] as! Int64)!
                 
-                let taskName = dataBase.select(
-                    table: "tasks",
-                    parameters: "name",
-                    condition: "id = \(currentTask)"
-                )[0]["0"] as! String
-               
-                let request = dataBase.select(
-                    table: "taskProperties",
-                    parameters: "description",
-                    condition: "task = \(currentTask)"
-                )
-                
-                var taskDescription: String = ""
-                
-                if (request.isEmpty) {
-                    dataBase.insert(
-                        table: "taskProperties",
-                        parameters: "\(currentTask)ǃǃ''ǃǃNULL",
-                        userId: userId
-                    )
-                }
-                else {
-                    taskDescription = request[0]["0"] as! String
-                }
-                
-                taskInfoLoader(
-                    name: taskName,
-                    description: taskDescription
-                )
+                pageLoader()
+                scrollViewButtonPressed = false
             }
-            else {
-                if (messageCompleteTask) {
-                    messageBoxShow(
-                        title: languageDirctionary["MessageBoxCompleteTaskTitle"]!,
-                        message: languageDirctionary["MessageBoxCompleteTaskBody"]!,
-                        delFlag: false,
-                        completeFlag: true,
-                        secondActionText: languageDirctionary["MessageBoxCompleteTaskSecondAction"]!,
-                        sender: sender
+            else if (viewDeep == 1) {
+                viewDeep += 1
+                
+                currentList = Int(exactly: dataBase.select(
+                    table: "lists",
+                    parameters: "id",
+                    condition: "name = '\(sender.title(for: .normal)!)' and folder = \(currentDir)"
+                )[0]["0"] as! Int64)!
+                
+                pageLoader()
+                scrollViewButtonPressed = false
+            }
+            else if (viewDeep == 2) {
+                
+                currentTask = Int(exactly: dataBase.select(
+                    table: "tasks",
+                    parameters: "id",
+                    condition: "name = '\(sender.title(for: .normal)!)' and list = \(currentList)"
+                )[0]["0"] as! Int64)!
+                
+                if (taskInfoOpen) {
+                    TaskInfo.isHidden = false
+                    
+                    let taskName = dataBase.select(
+                        table: "tasks",
+                        parameters: "name",
+                        condition: "id = \(currentTask)"
+                    )[0]["0"] as! String
+                    
+                    let request = dataBase.select(
+                        table: "taskProperties",
+                        parameters: "description",
+                        condition: "task = \(currentTask)"
                     )
+                    
+                    var taskDescription: String = ""
+                    
+                    if (request.isEmpty) {
+                        dataBase.insert(
+                            table: "taskProperties",
+                            parameters: "\(currentTask)ǃǃ''ǃǃNULL",
+                            userId: userId
+                        )
+                    }
+                    else {
+                        taskDescription = request[0]["0"] as! String
+                    }
+                    
+                    taskInfoLoader(
+                        name: taskName,
+                        description: taskDescription
+                    )
+                    scrollViewButtonPressed = false
                 }
                 else {
-                    mainPageScrollButtonCompleteTask(sender: sender)
+                    if (messageCompleteTask) {
+                        messageBoxShow(
+                            title: languageDirctionary["MessageBoxCompleteTaskTitle"]!,
+                            message: languageDirctionary["MessageBoxCompleteTaskBody"]!,
+                            delFlag: false,
+                            completeFlag: true,
+                            secondActionText: languageDirctionary["MessageBoxCompleteTaskSecondAction"]!,
+                            sender: sender
+                        )
+                    }
+                    else {
+                        mainPageScrollButtonCompleteTask(sender: sender)
+                    }
+                    if (!complitingTaskFlag) {
+                        scrollViewButtonPressed = false
+                    }
                 }
             }
         }
     }
     
     func mainPageScrollButtonCompleteTask (sender: UIButton) {
-        sender.isEnabled = false
-        scrollViewButtonPressed = true
+        complitingTaskFlag = true
         textSize = sender.titleLabel?.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)) ?? CGSize.zero
         let index: Int = scrollButtons.firstIndex(of: sender)!
         sender.addSubview(lineView!)
@@ -243,6 +251,7 @@ extension ViewController {
                 }
                 self.lineView?.frame = CGRect(x: 0, y: sender.frame.height / 2, width: 0, height: 1)
                 self.MainPageScroll.contentSize = CGSize(width: self.MainPageScroll.frame.size.width, height: self.MainPageScroll.contentSize.height - sender.frame.size.height - 20)
+                self.complitingTaskFlag = true
                 self.scrollViewButtonPressed = false
             })
         })

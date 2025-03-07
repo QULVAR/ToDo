@@ -5,7 +5,6 @@ import CryptoKit
 extension ViewController {
     
     func authPageViewDidLoad (flag: Bool = true) {
-        AuthPage.isHidden = true
         AuthPageLoginTextField.text = ""
         AuthPagePasswordTextField.text = ""
         if (flag) {
@@ -13,12 +12,17 @@ extension ViewController {
             AuthPage.frame.origin.x = MainView.frame.origin.x
             AuthPage.frame.origin.y = MainView.frame.origin.y
         }
+        AuthPage.alpha = 0
         AuthPage.isHidden = false
+        UIView.animate(withDuration: 0.5) {
+            self.AuthPage.alpha = 1
+        }
     }
     
     func authPageSignInButtonAction (sender: UIButton) {
         sender.isEnabled = false
         AuthPageLoginTextField.resignFirstResponder()
+        AuthPagePasswordTextField.resignFirstResponder()
         let username = AuthPageLoginTextField.text!
         let password = AuthPagePasswordTextField.text!
         var hashedPassword: String = ""
@@ -31,20 +35,24 @@ extension ViewController {
             "login": username,
             "password": hashedPassword
         ]))
-        
-        if ((res["status"] as! String) == "success") {
-            let lastActivity = dataBase.select(
-                table: "users",
-                parameters: "lastUpdate",
-                condition: "login = '\(username)'",
-                network: true
-            )[0]["lastUpdate"] as! String
-            dataBase.createUser(username: username, password: hashedPassword, lastActivity: lastActivity)
-            viewHide(object: AuthPage)
-            viewControllerViewDidLoad()
+        if (res.isEmpty) {
+            messageBoxShow(
+                title: "Error",
+                message: "Network is unavialable",
+                delFlag: false,
+                secondActionText: "Ok",
+                sender: sender
+            )
         }
         else {
-            messageBoxShow(title: "Error", message: "These user doesn't exist", delFlag: false, secondActionText: "Ok", sender: sender)
+            if ((res["status"] as! String) == "success") {
+                dataBase.createUser(username: username, password: hashedPassword, lastActivity: "0")
+                viewHide(object: AuthPage)
+                viewControllerViewDidLoad()
+            }
+            else {
+                messageBoxShow(title: "Error", message: "These user doesn't exist", delFlag: false, secondActionText: "Ok", sender: sender)
+            }
         }
         sender.isEnabled = true
     }

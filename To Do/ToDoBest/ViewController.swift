@@ -12,6 +12,10 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
     @IBOutlet var Settings: UIView!
     @IBOutlet weak var TaskInfo: UIView!
     @IBOutlet weak var RegisterPage: UIView!
+    @IBOutlet weak var LookingForNetView: UIView!
+    
+    //LookingForNet
+    @IBOutlet weak var LookingForNetLabel: UILabel!
     
     
     //Auth Page elements
@@ -77,6 +81,9 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
     @IBOutlet weak var TaskInfoDateLabel: UILabel!
     @IBOutlet weak var TaskInfoBackButton: UIButton!
     @IBOutlet weak var TaskInfoSaveButton: UIButton!
+    @IBOutlet weak var TaskInfoDatePickerContainer: UIView!
+    @IBOutlet weak var TaskInfoDateButton: UIButton!
+    @IBOutlet var TaskInfoTint: UIView!
     
     
     //Variables for all project
@@ -103,6 +110,11 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
     var labelColor: UIColor = UIColor.clear
     var taskInfoDatePickerTimestamp: Int = 0
     var settingsDatePickerTimestamp: Int = 0
+    var loaderLayer: CAShapeLayer?
+    var connectionCheckTimer: Timer?
+    var savedStrokeStart: CGFloat = 0
+    var savedStrokeEnd: CGFloat = 0
+    var complitingTaskFlag: Bool = false
     
     let translation = LanguageExtension()
     
@@ -116,19 +128,28 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
         Settings.isHidden = true
         NewPSD.isHidden = true
         Tint.isHidden = true
+        RegisterPage.isHidden = true
+        AuthPage.isHidden = true
+        LookingForNetView.isHidden = true
         
-        if (dataBase.dataBaseViewDidLoad()) {
+        _ = dataBase.checkConnectionNetwork()
+        let dataBaseLoadCode: Int = dataBase.dataBaseViewDidLoad()
+        if (dataBaseLoadCode == 2) {
+            LookingForNetViewDidLoad()
+        }
+        else if (dataBaseLoadCode == 1) {
             registerPageViewDidLoad()
             authPageViewDidLoad()
         }
-        else {
-            RegisterPage.isHidden = true
-            AuthPage.isHidden = true
+        else if (dataBaseLoadCode == 0) {
             viewControllerViewDidLoad()
         }
     }
+
     
     func viewControllerViewDidLoad () {
+        TaskInfoDatePicker.datePickerMode = .dateAndTime
+        TaskInfoDatePicker.preferredDatePickerStyle = .inline
         MainPage.isHidden = false
         TaskInfo.isHidden = false
         Settings.isHidden = false
@@ -245,5 +266,11 @@ class ViewController: UIViewController, UIColorPickerViewControllerDelegate {
     
     @IBAction func TaskInfoDatePickerAction(_ sender: UIDatePicker) {
         taskInfoDatePickerTimestamp = Int(Double(sender.date.timeIntervalSince1970))
+        changeButtonDate()
     }
+    
+    @IBAction func TaskInfoDateButtonAction(_ sender: UIButton) {
+        taskInfoDateButtonAction(sender: sender)
+    }
+    
 }

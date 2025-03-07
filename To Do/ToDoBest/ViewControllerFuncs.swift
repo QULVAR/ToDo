@@ -38,11 +38,11 @@ extension ViewController {
             if (!lists.isEmpty) {
                 for i in 0...(lists.count - 1) {
                     
-                    let listId: Int = dataBase.select(
+                    let listId: Int = Int(exactly: dataBase.select(
                         table: "lists",
                         parameters: "id",
                         condition: "name = '\(lists[i])' and folder = \(currentDir)"
-                    )[0]["0"] as! Int
+                    )[0]["0"] as! Int64)!
                     
                     let tasks: [String] = dataBase.dictToListString(
                         dict: dataBase.select(
@@ -58,11 +58,11 @@ extension ViewController {
                             notificationIds.append(id + "1")
                             notificationIds.append(id + "2")
                             
-                            let taskId: Int = dataBase.select(
+                            let taskId: Int = Int(exactly: dataBase.select(
                                 table: "tasks",
                                 parameters: "id",
                                 condition: "name = '\(tasks[j])' and list = \(listId)"
-                            )[0]["0"] as! Int
+                            )[0]["0"] as! Int64)!
                             
                             dataBase.delete(
                                 table: "taskProperties",
@@ -78,11 +78,18 @@ extension ViewController {
                         }
                     }
                     
-                    flag = dataBase.select(
+                    let settingsStandartList: Any? = dataBase.select(
                         table: "settings",
                         parameters: "standartList",
                         condition: "user = \(userId)"
-                    )[0]["0"] as! Int == listId
+                    )[0]["0"]!
+                    
+                    if (settingsStandartList == nil) {
+                        flag = false
+                    }
+                    else {
+                        flag = true
+                    }
                     
                     if (flag) {
                         dataBase.update(
@@ -101,11 +108,19 @@ extension ViewController {
                 }
             }
             
-            flag = dataBase.select(
+            let settingsStandartFolder: Any? = dataBase.select(
                 table: "settings",
                 parameters: "standartFolder",
                 condition: "user = \(userId)"
-            )[0]["0"] as! Int == currentDir
+            )[0]["0"]!
+            
+            if (settingsStandartFolder == nil) {
+                flag = false
+            }
+            else {
+                flag = true
+            }
+            
             
             if (flag) {
                 dataBase.update(
@@ -117,7 +132,7 @@ extension ViewController {
             }
             
             dataBase.delete(
-                table: "folder",
+                table: "folders",
                 condition: "id = \(currentDir)",
                 userId: userId
             )
@@ -151,11 +166,11 @@ extension ViewController {
                     notificationIds.append(id + "1")
                     notificationIds.append(id + "2")
                     
-                    let taskId: Int = dataBase.select(
+                    let taskId: Int = Int(exactly: dataBase.select(
                         table: "tasks",
                         parameters: "id",
                         condition: "name = '\(tasks[i])' and list = \(currentList)"
-                    )[0]["0"] as! Int
+                    )[0]["0"] as! Int64)!
                     
                     dataBase.delete(
                         table: "taskProperties",

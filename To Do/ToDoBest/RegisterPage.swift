@@ -5,7 +5,6 @@ import CryptoKit
 extension ViewController {
     
     func registerPageViewDidLoad (flag: Bool = true) {
-        RegisterPage.isHidden = true
         RegisterPageLoginTextField.text = ""
         RegisterPagePasswordTextField.text = ""
         RegisterPagePasswordConfirmTextField.text = ""
@@ -20,6 +19,8 @@ extension ViewController {
     func registerPageSignInButtonAction (sender: UIButton) {
         sender.isEnabled = false
         RegisterPageLoginTextField.resignFirstResponder()
+        RegisterPagePasswordTextField.resignFirstResponder()
+        RegisterPagePasswordConfirmTextField.resignFirstResponder()
         let username = RegisterPageLoginTextField.text!
         let password = RegisterPagePasswordTextField.text!
         let passwordConfirm = RegisterPagePasswordConfirmTextField.text!

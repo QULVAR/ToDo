@@ -30,6 +30,7 @@
 		16D44AA32BA084E7006027C2 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D44AA22BA084E7006027C2 /* MainPage.swift */; };
 		16F081DC2C7FAFD600EB4260 /* ServerDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F081DB2C7FAFD600EB4260 /* ServerDataBase.swift */; };
 		16F081DE2C7FEF4000EB4260 /* dataBaseFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F081DD2C7FEF4000EB4260 /* dataBaseFuncs.swift */; };
+		16F480F22D77C122009B0B42 /* LookingForNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F480F12D77C122009B0B42 /* LookingForNet.swift */; };
 		16F653372C7FA7E30049A669 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 16F653362C7FA7E30049A669 /* SQLite */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		16D44AA22BA084E7006027C2 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
 		16F081DB2C7FAFD600EB4260 /* ServerDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDataBase.swift; sourceTree = "<group>"; };
 		16F081DD2C7FEF4000EB4260 /* dataBaseFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataBaseFuncs.swift; sourceTree = "<group>"; };
+		16F480F12D77C122009B0B42 /* LookingForNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingForNet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				1695FDEB2B2C1DD300B14550 /* AppDelegate.swift */,
 				1695FDED2B2C1DD300B14550 /* SceneDelegate.swift */,
 				1695FDEF2B2C1DD300B14550 /* ViewController.swift */,
+				16F480F12D77C122009B0B42 /* LookingForNet.swift */,
 				1683CA2A2C82554100A723DD /* RegisterPage.swift */,
 				1683CA282C824FE300A723DD /* AuthPage.swift */,
 				16D44AA22BA084E7006027C2 /* MainPage.swift */,
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1683CA292C824FE300A723DD /* AuthPage.swift in Sources */,
+				16F480F22D77C122009B0B42 /* LookingForNet.swift in Sources */,
 				164FE09E2BA091EA007A6AB8 /* TaskInfo.swift in Sources */,
 				1695FDF02B2C1DD300B14550 /* ViewController.swift in Sources */,
 				1695FDEC2B2C1DD300B14550 /* AppDelegate.swift in Sources */,
